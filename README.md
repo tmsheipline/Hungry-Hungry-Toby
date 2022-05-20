@@ -1,5 +1,5 @@
 # Hungry Hungry Toby #
-## Premise: ##
+## Premise ##
 ### Toby, a rambunctious sphynx cat, is on a mission to cure his hunger for human food. Help him stave off hunger by catching the human food items but avoid the inedible items. ###
 
 ## User Story ##
