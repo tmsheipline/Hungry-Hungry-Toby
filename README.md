@@ -16,7 +16,7 @@ As a user I want to:
 * Receive a loss message if 3 bad items have been eaten
 * See Win/Loss screen with a play again button with game reset when clicked
 
-##Technologies Used ##
+## Technologies Used ##
 * HTML
 * CSS
 * Javascript
