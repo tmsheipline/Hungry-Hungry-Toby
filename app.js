@@ -7,3 +7,6 @@ canvas.setAttribute("width", getComputedStyle(canvas)["width"])
 canvas.setAttribute("height", getComputedStyle(canvas)["height"])
 
 // ====================== Variables / DOM Manipulation ==================//
+
+
+// Class and Constructor for the main character (Toby)

@@ -14,13 +14,14 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    height: 200px;
 }
 
 #title-text{
     /* font-family: 'Bangers', cursive; */
     font-size: 65px;
     text-align: center;
-    margin: 0.2em;
+    margin: 0.1em;
 }
 
 #title-toby-two{
@@ -30,7 +31,6 @@ body{
 }
 
 h2{
-    color: orangered;
     text-decoration: underline;
 }
 
@@ -57,7 +57,7 @@ canvas{
     grid-template-columns: 10.25fr 4.5fr 3.25fr;
     grid-template-areas: "top-left top top-right"
                          "game game game"
-                         "btm-left btm btm-right";
+                         "btm-left btm-left btm-right";
     border: 2px black solid;
     border-radius: 0.5em;
                          
@@ -75,12 +75,14 @@ canvas{
     grid-area: top-left;
     width: 180px;
     height: 100px;
+    color: orangered;
 }
 
 #top-right{
     grid-area: top-right;
     width: 180px;
     height: 100px;
+    color: orangered;
 }
 
 main{
@@ -93,6 +95,7 @@ main{
     height: 20px;
     align-items: center;
     text-align: center;
+    margin: 1.5em;
 }
 
 #bottom-right{
