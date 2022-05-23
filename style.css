@@ -9,19 +9,31 @@ body{
     font-family: 'Bangers', cursive;;
 }
 
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 #title-text{
     /* font-family: 'Bangers', cursive; */
-    font-size: 72px;
+    font-size: 65px;
     text-align: center;
-    margin: 1em;
+    margin: 0.2em;
+}
+
+#title-toby-two{
+    /* width: 100px; */
+    /* height: 100px; */
+    text-align: center;
 }
 
 h2{
-    color: goldenrod;
+    color: black;
 }
 
 canvas{
-    /* background-image: url('./img/GamePlay\ Kitchen\ for\ Tobybig.png'); */
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -30,20 +42,22 @@ canvas{
 }
 
 #game-container{
-    max-width: 50em;
+    max-width: 1000px;
+    height: 600px;
     background-image: url('./img/GamePlay\ Kitchen\ for\ Tobybig.png');
     background-position: center;
     background-size: cover;
+    background-repeat: none;
     margin: 0 auto;
-    /* padding: 0.5em; */
+    padding: 0.5em;
     display: grid;
-    grid-gap: 2em;
+    grid-gap: 1em;
     grid-template-rows: auto;
     grid-template-columns: 0.25fr 0.5fr 0.25fr;
     grid-template-areas: "top-left top top-right"
                          "game game game"
                          "btm-right btm-right btm-right";
-    border: 2px grey solid
+    border: 2px grey solid;
                          
 }
 
@@ -67,6 +81,9 @@ main{
     grid-area: game;
 }
 
-#bottom-right{
+/* #bottom-right{
     grid-area: btm-right;
-}
+    width: 80%;
+    height: 50px;
+    align-items: center;
+} */
