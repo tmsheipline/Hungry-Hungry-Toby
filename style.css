@@ -1,6 +1,21 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    font-family: 'Bangers', cursive;;
+}
+
 #title-text{
-    font-family: 'Bangers', cursive;
+    /* font-family: 'Bangers', cursive; */
     font-size: 80px;
     text-align: center;
     margin: 0.5em;
+}
+
+canvas{
+    background-image: url();
 }
