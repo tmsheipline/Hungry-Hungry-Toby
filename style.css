@@ -30,7 +30,8 @@ body{
 }
 
 h2{
-    color: black;
+    color: orangered;
+    text-decoration: underline;
 }
 
 canvas{
@@ -42,7 +43,7 @@ canvas{
 }
 
 #game-container{
-    max-width: 1000px;
+    max-width: 50em;
     height: 600px;
     background-image: url('./img/GamePlay\ Kitchen\ for\ Tobybig.png');
     background-position: center;
@@ -65,16 +66,20 @@ canvas{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightgrey;
-    border: 1px black dashed ;
+    /* background-color: lightgrey; */
+    /* border: 1px black dashed ; */
 }
 
 #top-left{
     grid-area: top-left;
+    width: 180px;
+    height: 100px;
 }
 
 #top-right{
     grid-area: top-right;
+    width: 180px;
+    height: 100px;
 }
 
 main{
