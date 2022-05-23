@@ -11,11 +11,51 @@ body{
 
 #title-text{
     /* font-family: 'Bangers', cursive; */
-    font-size: 80px;
+    font-size: 72px;
     text-align: center;
     margin: 0.5em;
 }
 
 canvas{
-    background-image: url();
+    background-image: url('./img/Black\ and\ white\ Kitchen\ for\ Toby.png');
+    width: 100%;
+    /* height: 300; */
+    /* background-color: green; */
+}
+
+#game-container{
+    max-width: 50em;
+    background-color: yellow;
+    margin: 0 auto;
+    padding: 0.3em;
+    display: grid;
+    grid-gap: 2em;
+    grid-template-rows: 0.25fr 0.5fr 0.25fr;
+    grid-template-columns: 0.25fr 0.5fr 0.25fr;
+    grid-template-areas: "top-left top top-right"
+                         "game game game"
+                         "btm-right btm-right btm-right"
+}
+
+#top-left, #top-right, #bottom-right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+}
+
+#top-left{
+    grid-area: top-left;
+}
+
+#top-right{
+    grid-area: top-right;
+}
+
+main{
+    grid-area: game;
+}
+
+#bottom-right{
+    grid-area: btm-right;
 }
