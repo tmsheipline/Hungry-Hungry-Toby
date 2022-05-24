@@ -28,7 +28,7 @@ class CharacterMaker {
         }
     }};
     
-    // === Event Listener to get Toby on the gameboard ==========//
+    // === Event Listener to get images on the gameboard ==========//
     (function (){
         toby = new CharacterMaker(300, 280, 150, 250, 2, tobyImage);
         // console.log(toby);
@@ -47,20 +47,24 @@ class CharacterMaker {
         rubberband.render();
     })()
     
-// // ========== KEYBOARD INTERACTION LOGIC ============= //
-// function keyboardMovement(e){
-//     console.log('the key that was presssed was' + e.key);
+// ========== KEYBOARD INTERACTION LOGIC ============= //
+function keyboardMovement(e){
+    console.log('the key that was presssed was' + e.key);
 
-//     switch (e.key){
-//         case "ArrowLeft":
-//             toby.x > 0 ? toby.x -= 10 : null;
-//             break
-//         case "ArrowRight":
-//             toby.x < (game.width - toby.width) ? toby.x += 10 : null;
+    switch (e.key){
+        case "ArrowLeft":
+            toby.x > 0 ? toby.x -= 10 : null;
+            break
+        case "ArrowRight":
+            toby.x < (game.width - toby.width) ? toby.x += 10 : null;
 
-//     }
-// // console.log(toby);
-// }
+    }
+// console.log(toby);
+}
+
+//---- Event listener to get Toby to move base on keydown ----//
+document.addEventListener('keydown', keyboardMovement);
+
 
 // ======== Game Loop Logic ============//
 function gameloop(){
