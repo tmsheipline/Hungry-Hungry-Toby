@@ -34,7 +34,7 @@ class CharacterMaker {
     
     // === Event Listener to get images on the gameboard ==========//
     (function (){
-        toby = new CharacterMaker(300, 280, 150, 250, 2, tobyImage);
+        toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
         toby.render();
         console.log(toby);
 
@@ -58,12 +58,12 @@ function keyboardMovement(e){
     switch (e.key){
         case "ArrowLeft":
             ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-            toby.x = toby.x - 10;
+            toby.x = toby.x - 20;
             toby.render(toby.image, toby.x, toby.y);
             break
         case "ArrowRight":
             ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-            toby.x = toby.x + 10;
+            toby.x = toby.x + 20;
             toby.render(toby.image, toby.x, toby.y);
             break
         }
@@ -90,7 +90,7 @@ function gameloop(){
 //         hamburger.render();
 //         let hit = detectHit(toby, hamburger);
 //     }
-//     toby.render();
+//     toby.render(toby.x, toby.y, toby.width, toby.height);
 }
 
 // //--- Detect Hit Logic ---//
