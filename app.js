@@ -57,10 +57,12 @@ function keyboardMovement(e){
     
     switch (e.key){
         case "ArrowLeft":
+            ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
             toby.x = toby.x - 10;
             toby.render(toby.image, toby.x, toby.y);
             break
         case "ArrowRight":
+            ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
             toby.x = toby.x + 10;
             toby.render(toby.image, toby.x, toby.y);
             break
@@ -81,14 +83,14 @@ document.addEventListener('keydown', keyboardMovement);
 
 // ======== Game Loop Logic ============//
 function gameloop(){
-    ctx.clearRect(0, 0, game.width, game.height);
+    ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
 
-    if(hamburger.alive){
-        hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
-        hamburger.render();
-        let hit = detectHit(toby, hamburger);
-    }
-    toby.render();
+//     if(hamburger.alive){
+//         hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
+//         hamburger.render();
+//         let hit = detectHit(toby, hamburger);
+//     }
+//     toby.render();
 }
 
 // //--- Detect Hit Logic ---//
