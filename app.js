@@ -4,6 +4,7 @@ let ctx = canvas.getContext('2d')
 let score = document.querySelector('#score')
 let lives = document.querySelector('#lifecount')
 let hamburger;
+let toby;
 
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"])
@@ -34,11 +35,11 @@ class CharacterMaker {
     // === Event Listener to get images on the gameboard ==========//
     (function (){
         toby = new CharacterMaker(300, 280, 150, 250, 2, tobyImage);
-        // console.log(toby);
         toby.render();
+        console.log(toby);
 
-        hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
-        hamburger.render();
+        // hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
+        // hamburger.render();
 
         // yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
         // yarn.render();
@@ -52,57 +53,69 @@ class CharacterMaker {
     
 // ========== KEYBOARD INTERACTION LOGIC ============= //
 function keyboardMovement(e){
-    // console.log('the key that was presssed was' + e.key);
-
+    console.log('the key that was presssed was' + e.key);
+    
     switch (e.key){
         case "ArrowLeft":
-            toby.x > 0 ? toby.x -= 10 : null;
+            toby.x = toby.x - 10;
+            toby.render(toby.image, toby.x, toby.y);
             break
         case "ArrowRight":
-            toby.x < (game.width - toby.width) ? toby.x += 10 : null;
-
-    }
-// console.log(toby);
-}
+            toby.x = toby.x + 10;
+            toby.render(toby.image, toby.x, toby.y);
+            break
+        }
+        console.log(toby);
+        }
+        
+    // switch (e.key){
+    //     case "ArrowLeft":
+    //         toby.x > 300 ? toby.x -= 10 : null;
+    //         break
+    //     case "ArrowRight":
+    //         toby.x < (game.width - toby.width) ? toby.x += 10 : null;
+    // }
 
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener('keydown', keyboardMovement);
 
 // ======== Game Loop Logic ============//
 function gameloop(){
+    ctx.clearRect(0, 0, game.width, game.height);
 
-
-
-
-
-
-
-}
-//--- Detect Hit Logic ---//
-function detectHit(p1, p2){
-    let hitTest = 
-        p1.y + p1.height > p2.y &&
-        p1.y < p2.y + p2.height &&
-        p1.x + p1.width > p2.x &&
-        p1.x < p2.x + p2.width; // {boolean} : if all are true -> hit
-
-    if (hitTest){
-        let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
-        let newScore = gameScore + 100;
-        score.textContent = newScore;
-        return addNewItem();
-    } else {
-        return false;
+    if(hamburger.alive){
+        hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
+        hamburger.render();
+        let hit = detectHit(toby, hamburger);
     }
-};
-
-// ==== Add new item onto the board randomly falling from top of page ========//
-function addNewItem(){
-    hamburger.alive = false;
-    setTimeout(function(){
-        let x = Math.floor(Math.random() * game.width) + 10;
-        let y = 0;
-        hamburger = new CharacterMaker(x, y, 50, 50, 3, hamburgerImage);
-    }, 1000)
-    return true;
+    toby.render();
 }
+
+// //--- Detect Hit Logic ---//
+// function detectHit(p1, p2){
+//     let hitTest = 
+//         p1.y + p1.height > p2.y &&
+//         p1.y < p2.y + p2.height &&
+//         p1.x + p1.width > p2.x &&
+//         p1.x < p2.x + p2.width; // {boolean} : if all are true -> hit
+
+//     if (hitTest){
+//         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+//         let newScore = gameScore + 100;
+//         score.textContent = newScore;
+//         return addNewItem();
+//     } else {
+//         return false;
+//     }
+// };
+
+// // ==== Add new item onto the board randomly falling from top of page ========//
+// function addNewItem(){
+//     hamburger.alive = false;
+//     setTimeout(function(){
+//         let x = Math.floor(Math.random() * game.width) + 10;
+//         let y = 0;
+//         hamburger = new CharacterMaker(x, y, 50, 50, 3, hamburgerImage);
+//     }, 1000)
+//     return true;
+// }
