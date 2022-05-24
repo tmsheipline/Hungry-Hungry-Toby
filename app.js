@@ -6,23 +6,14 @@ let ctx = canvas.getContext('2d')
 canvas.setAttribute("width", getComputedStyle(canvas)["width"])
 canvas.setAttribute("height", getComputedStyle(canvas)["height"])
 
-// ====================== Variables / DOM Manipulation ==================//
-let tobyImage = document.querySelector('#tobypic');
-let rubberbandImage = document.querySelector('#')
-let yarnImage = document.querySelector('#')
-let chickenImage = document.querySelector('#')
-let hamburgerImage = document.querySelector('#')
-
-
 //========== Images to load =================//
+let tobyImage = document.querySelector('#tobypic');
+let rubberbandImage = document.querySelector('#rubberbandpic')
+let yarnImage = document.querySelector('#yarnpic')
+let chickenImage = document.querySelector('#chickenpic')
+let hamburgerImage = document.querySelector('#burgerpic')
 
-
-
-
-
-
-
-// =================== Function or class for the main character (Toby)===================//
+// =================== Class Constructor for the character objects===================//
 class CharacterMaker {
     constructor (x, y, width, height, speed, image){
         this.x = x;
@@ -37,28 +28,25 @@ class CharacterMaker {
         }
     }};
     
-    
-    
     // === Event Listener to get Toby on the gameboard ==========//
     (function (){
-        // let tobyImage = new Image();
-        // tobyImage.src = "img/frontviewtoby.png"
-        toby = new CharacterMaker(0, 0, 100, 200, 2, tobyImage);
-        console.log(toby);
+        toby = new CharacterMaker(300, 280, 150, 250, 2, tobyImage);
+        // console.log(toby);
         toby.render();
-        // console.log(tobyImage);
-        // shrek = new Crawler(100, 200, "#bada55", 40, 80);
-    
-        // console.log(donkey, shrek);
+
+        hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
+        hamburger.render();
+
+        yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
+        yarn.render();
+
+        chicken = new CharacterMaker(500, 0, 50, 50, 3, chickenImage);
+        chicken.render();
+
+        rubberband = new CharacterMaker(730, 0, 50, 50, 3, rubberbandImage);
+        rubberband.render();
     })()
     
-    // window.addEventListener('DOMContentLoaded', function (e){
-    //     toby = new CharacterMaker(0, 0, 100, 200, 2, image);
-    //     console.log(toby);
-    //     toby.render();
-    // });
-    // toby = new CharacterMaker(20, 30, 100, 200, 2, tobyImage);
-    // console.log(toby);
 // // ========== KEYBOARD INTERACTION LOGIC ============= //
 // function keyboardMovement(e){
 //     console.log('the key that was presssed was' + e.key);
