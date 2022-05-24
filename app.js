@@ -58,12 +58,14 @@ function keyboardMovement(e){
     switch (e.key){
         case "ArrowLeft":
             ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-            toby.x = toby.x - 20;
+            // toby.x = toby.x - 20;
+            toby.x > -40 ? toby.x -= 20 : null; //keeps toby on the gameboard
             toby.render(toby.image, toby.x, toby.y);
             break
         case "ArrowRight":
             ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-            toby.x = toby.x + 20;
+            // toby.x = toby.x + 20;
+            toby.x < (game.width - toby.width) ? toby.x += 20 : null; //keeps toby on gameboard
             toby.render(toby.image, toby.x, toby.y);
             break
         }
@@ -72,10 +74,10 @@ function keyboardMovement(e){
         
     // switch (e.key){
     //     case "ArrowLeft":
-    //         toby.x > 300 ? toby.x -= 10 : null;
+    //         toby.x > -50 ? toby.x -= 20 : null;
     //         break
     //     case "ArrowRight":
-    //         toby.x < (game.width - toby.width) ? toby.x += 10 : null;
+    //         toby.x < (game.width - toby.width) ? toby.x += 20 : null;
     // }
 
 //---- Event listener to get Toby to move base on keydown ----//
