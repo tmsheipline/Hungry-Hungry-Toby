@@ -1,8 +1,10 @@
-// ====================== Setting Canvas and Context ====================//
+// ======================Global Variables / DOM manipulation ====================//
 let canvas = document.getElementById('game');
 let ctx = canvas.getContext('2d')
+let score = document.querySelector('#score')
+let lives = document.querySelector('#lifecount')
 
-// ====================== PAINT INTIAL SCREEN =========================== //
+// ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"])
 canvas.setAttribute("height", getComputedStyle(canvas)["height"])
 
@@ -37,14 +39,14 @@ class CharacterMaker {
         hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
         hamburger.render();
 
-        yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
-        yarn.render();
+        // yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
+        // yarn.render();
 
-        chicken = new CharacterMaker(500, 0, 50, 50, 3, chickenImage);
-        chicken.render();
+        // chicken = new CharacterMaker(500, 0, 50, 50, 3, chickenImage);
+        // chicken.render();
 
-        rubberband = new CharacterMaker(730, 0, 50, 50, 3, rubberbandImage);
-        rubberband.render();
+        // rubberband = new CharacterMaker(730, 0, 50, 50, 3, rubberbandImage);
+        // rubberband.render();
     })()
     
 // ========== KEYBOARD INTERACTION LOGIC ============= //
@@ -65,15 +67,32 @@ function keyboardMovement(e){
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener('keydown', keyboardMovement);
 
+//--- Detect Hit Logic ---//
+function detectHit(p1, p2){
+    let hitTest = 
+        p1.y + p1.height > p2.y &&
+        p1.y < p2.y + p2.height &&
+        p1.x + p1.width > p2.x &&
+        p1.x < p2.x + p2.width; // {boolean} : if all are true -> hit
 
-// ======== Game Loop Logic ============//
-function gameloop(){
-
-    //render game characters
-
-
-
-
-
+    if (hitTest){
+        let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+    }
 
 }
+
+
+
+
+
+
+// ======== Game Loop Logic ============//
+// function gameloop(){
+
+
+
+
+
+
+
+// }
