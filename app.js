@@ -3,6 +3,7 @@ let canvas = document.getElementById('game');
 let ctx = canvas.getContext('2d')
 let score = document.querySelector('#score')
 let lives = document.querySelector('#lifecount')
+let hamburger;
 
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"])
@@ -51,7 +52,7 @@ class CharacterMaker {
     
 // ========== KEYBOARD INTERACTION LOGIC ============= //
 function keyboardMovement(e){
-    console.log('the key that was presssed was' + e.key);
+    // console.log('the key that was presssed was' + e.key);
 
     switch (e.key){
         case "ArrowLeft":
@@ -67,6 +68,16 @@ function keyboardMovement(e){
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener('keydown', keyboardMovement);
 
+// ======== Game Loop Logic ============//
+function gameloop(){
+
+
+
+
+
+
+
+}
 //--- Detect Hit Logic ---//
 function detectHit(p1, p2){
     let hitTest = 
@@ -77,22 +88,21 @@ function detectHit(p1, p2){
 
     if (hitTest){
         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+        let newScore = gameScore + 100;
+        score.textContent = newScore;
+        return addNewItem();
+    } else {
+        return false;
     }
+};
 
+// ==== Add new item onto the board randomly falling from top of page ========//
+function addNewItem(){
+    hamburger.alive = false;
+    setTimeout(function(){
+        let x = Math.floor(Math.random() * game.width) + 10;
+        let y = 0;
+        hamburger = new CharacterMaker(x, y, 50, 50, 3, hamburgerImage);
+    }, 1000)
+    return true;
 }
-
-
-
-
-
-
-// ======== Game Loop Logic ============//
-// function gameloop(){
-
-
-
-
-
-
-
-// }
