@@ -7,7 +7,9 @@ canvas.setAttribute("width", getComputedStyle(canvas)["width"])
 canvas.setAttribute("height", getComputedStyle(canvas)["height"])
 
 // ====================== Variables / DOM Manipulation ==================//
-
+let toby;
+let hamburger;
+let rubberband;
 
 // =====================Class and Constructor for the main character (Toby)===================//
 class Toby {
@@ -23,3 +25,7 @@ class Toby {
         };
     }
 }
+// === Event Listener to get Toby on the gameboard ==========//
+window.addEventListener('DOMContentLoaded', function (e){
+
+})
