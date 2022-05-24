@@ -17,6 +17,12 @@ tobyImage.src = "img/front view toby.png"
 let hamburgerImage = new Image();
 hamburgerImage.src = "img/hamburger icon.png"
 
+let chickenImage = new Image();
+chickenImage.src = "img/chickenlegicon.png"
+
+let yarnImage = new Image();
+yarnImage.src = "img/yarniconreal.png"
+
 let rubberbandImage = new Image();
 rubberbandImage.src = "img/rubberband icon.png"
 // =================== Function or class for the main character (Toby)===================//
