@@ -36,23 +36,52 @@ class CharacterMaker {
 
 // ============= Class Constructor for all falling objects =================== //
 class FallingObject {
-    constructor (x, y, width, height, speed, image){
+    constructor (name, image, width, height, rate, x){
         this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = width;
-        this.speed = speed;
+        this.y = 0;
+        this.name = name;
         this.image = image;
+        this.width = width;
+        this.height = height;
+        this.rate = rate;
         this.alive = true;
         this.render = function (){
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
     }
 };
+// === Create random number generator to be called like which object to create, starting position on x axis == //
+function randomNum(min, max){
+    min = Math.ceil(min)
+    max = Math.floor(max)
+    return Math.floor(Math.random() * max - min + 1) + min
+}
 
-// ======= class constructor for the falling items =============//
- 
-    
+//= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==// 
+    const fallingItems = []
+
+// == Function to create falling object items for player to collect or avoid. Want position to be randomly generated on x axis.
+// parameters are name, image, width, height, rate, x
+ function makeItem(){
+     let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
+     let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
+     let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
+     let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
+
+    let randomImage = randomNum(1,4)
+}
+
+// === Get items from array onto gameboard === //
+function drawItem(){
+    for (let i = 0; i < fallingItems.length; i++){
+        fallingItems[i].render()
+        fallingItems[i].y += fallingItems[i].rate
+    }
+};
+
+
+
+
     // === Event Listener to get images on the gameboard ==========//
     (function (){
         toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
@@ -107,12 +136,18 @@ function gameloop(){
     }
 
 //--- Detect Hit Logic ---//
-function detectHit(p1, p2){
-    let hitTest = 
-        p1.y + p1.height > p2.y &&
-        p1.y < p2.y + p2.height &&
-        p1.x + p1.width > p2.x &&
-        p1.x < p2.x + p2.width; // {boolean} : if all are true -> hit
+function detectHit(){
+    for (let i = 0; i < fallingItems.length; i++){
+        let toby = 
+
+
+    }
+
+
+
+
+
+
 
     if (hitTest){
         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
