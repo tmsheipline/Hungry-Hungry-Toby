@@ -10,7 +10,6 @@ let lives = document.querySelector("#lifecount");
 let foodSpeed = 0;
 // let startingPosition = true;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
-let startScore = 0;
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -156,16 +155,16 @@ function repopulate() {
 
 // ======== Game Loop Logic ============//
 function gameloop() {
-// ==== Clear trailing image objects ====== //
+  // ==== Clear trailing image objects ====== //
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-// Clear Toby trailing image ===============//
+  // Clear Toby trailing image ===============//
   ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
 
-// === Draw Toby on the board each loop === //
+  // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
 
-//Items to be drawn and fall randomly along X axis //
+  //Items to be drawn and fall randomly along X axis //
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -174,7 +173,7 @@ function gameloop() {
   fallingChicken.move();
   fallingYarn.render();
   fallingYarn.move();
-// === Call Functions to operate in gameloop ==== //
+  // === Call Functions to operate in gameloop ==== //
   repopulate();
   detectHamburgerHit(toby, fallingHamburger);
   detectChickenHit(toby, fallingChicken);
@@ -193,15 +192,15 @@ function detectHamburgerHit(toby, fallingHamburger) {
     console.log(`hamburger hit toby!`);
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 100;
-    score.textContent = `${newScore}`;
-    return true;
+    score.textContent = `Score:${newScore}`;
+    return repopulate;
   } else {
-      return
+    return;
   }
-};
+}
 
-function detectChickenHit(toby, fallingChicken){
-    let chickenHitTest =
+function detectChickenHit(toby, fallingChicken) {
+  let chickenHitTest =
     toby.y + toby.height > fallingChicken.y &&
     toby.y < fallingChicken.y + fallingChicken.height &&
     toby.x + toby.width > fallingChicken.x &&
@@ -210,10 +209,10 @@ function detectChickenHit(toby, fallingChicken){
   if (chickenHitTest) {
     console.log(`Chicken hit toby!`);
   }
-};
+}
 
-function detectYarnHit(toby, fallingYarn){
-    let yarnHitTest =
+function detectYarnHit(toby, fallingYarn) {
+  let yarnHitTest =
     toby.y + toby.height > fallingYarn.y &&
     toby.y < fallingYarn.y + fallingYarn.height &&
     toby.x + toby.width > fallingYarn.x &&
@@ -221,11 +220,17 @@ function detectYarnHit(toby, fallingYarn){
 
   if (yarnHitTest) {
     console.log(`Yarn hit toby!`);
+    let live = Number(lives.textContent)
+    let lifeCount = live - 1;
+    lives.textContent = lifeCount;
+    return repopulate;
+  } else {
+    return;
   }
-};
+}
 
-function detectRubberbandHit(toby, fallingRubberband){
-    let rubberbandHitTest =
+function detectRubberbandHit(toby, fallingRubberband) {
+  let rubberbandHitTest =
     toby.y + toby.height > fallingRubberband.y &&
     toby.y < fallingRubberband.y + fallingRubberband.height &&
     toby.x + toby.width > fallingRubberband.x &&
@@ -234,7 +239,7 @@ function detectRubberbandHit(toby, fallingRubberband){
   if (rubberbandHitTest) {
     console.log(`Rubberband hit toby!`);
   }
-};
+}
 //   let hitTest =
 //     toby.y + toby.height > fallingHamburger.y &&
 //     toby.y < fallingHamburger.y + fallingHamburger.height &&
