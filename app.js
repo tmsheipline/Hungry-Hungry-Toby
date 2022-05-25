@@ -41,7 +41,7 @@ class CharacterMaker {
 
 // === Get Hamburger on gameboard - falling from random x axis points ===//
 const fallingHamburger = {
-    x: Math.floor(Math.random() * 20),
+    x: Math.floor(Math.random() * game.width) + 10,
     y: 0,
     width: 50,
     height: 50,
@@ -54,7 +54,36 @@ const fallingHamburger = {
         this.y += this.foodSpeed;
     }
 };
+// == Get rubberband on board - fall from random x axis point
+const fallingRubberband = {
+    x: Math.floor(Math.random() * game.width) + 10,
+    y: 0,
+    width: 50,
+    height: 50,
+    foodSpeed: 30,
+    image: rubberbandImage,
+    render(){
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    },
+    move(){
+        this.y += this.foodSpeed;
+    }
+};
 
+const fallingChicken = {
+    x: Math.floor(Math.random() * game.width) + 10,
+    y: 0,
+    width: 50,
+    height: 50,
+    foodSpeed: 20,
+    image: chickenImage,
+    render(){
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    },
+    move(){
+        this.y += this.foodSpeed;
+    }
+};
 
 // ============= Class Constructor for all falling objects =================== //
 // class FallingObject {
@@ -127,31 +156,31 @@ function randomNum(num1, num2){
     // }
 
     // === Get items from array onto gameboard === //
-    function drawItem(){
-        for (let i = 0; i < fallingItems.length; i++){
-            fallingItems[i].render()
-            fallingItems[i].y += fallingItems[i].speed
-        }
-    };
+    // function drawItem(){
+    //     for (let i = 0; i < fallingItems.length; i++){
+    //         fallingItems[i].render()
+    //         fallingItems[i].y += fallingItems[i].speed
+    //     }
+    // };
     // // ==== Add new item onto the board randomly falling from top of page ========//
-    function addNewItem(){
-        hamburger.alive = false;
-        hamburger = new FallingObject(x, y, 50, 50, 3, hamburgerImage);
-        setTimeout(function(){
-            let x = Math.floor(Math.random() * game.width) + 10;
-            let y = 0;
-        }, 1000)
-        return true;
-    }
+    // function addNewItem(){
+    //     hamburger.alive = false;
+    //     hamburger = new FallingObject(x, y, 50, 50, 3, hamburgerImage);
+    //     setTimeout(function(){
+    //         let x = Math.floor(Math.random() * game.width) + 10;
+    //         let y = 0;
+    //     }, 1000)
+    //     return true;
+    // }
     
 // == Function to create falling object items for player to collect or avoid. Want position to be randomly generated on x axis.
 // parameters are name, image, width, height, speed, x
- function makeItem(){
-     let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
-     let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
-     let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
-     let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
-}
+//  function makeItem(){
+//      let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
+//      let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
+//      let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
+//      let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
+// }
 
 
     
@@ -185,8 +214,13 @@ function gameloop(){
     ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
 
     toby.render(toby.x, toby.y, toby.width, toby.height);
+    //Items to be drawn and move //
     fallingHamburger.render();
     fallingHamburger.move();
+    fallingRubberband.render();
+    fallingRubberband.move();
+    fallingChicken.render();
+    fallingChicken.move();
     }
 
     
