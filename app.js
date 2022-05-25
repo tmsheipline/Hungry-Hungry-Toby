@@ -35,19 +35,19 @@ class CharacterMaker {
 };
 
 // === Get Hamburger on gameboard - falling from random x axis points ===//
-const fallingHamburger = {
-    x: Math.floor(Math.random() * 20),
-    y: 0,
-    width: 50,
-    height: 50,
-    speed: 10,
-    render(){
-        ctx.drawImage(image, this.x, this.y, this.width, this.height);
-    },
-    move(){
-        this.y += this.speed;
-    }
-};
+// const fallingHamburger = {
+//     x: Math.floor(Math.random() * 20),
+//     y: 0,
+//     width: 50,
+//     height: 50,
+//     speed: 10,
+//     render(){
+//         ctx.drawImage(image, this.x, this.y, this.width, this.height);
+//     },
+//     move(){
+//         this.y += this.speed;
+//     }
+// };
 
 // ==== Function to draw falling objects onto game board ====//
 // function fallObject {
@@ -59,29 +59,65 @@ const fallingHamburger = {
 
 // ============= Class Constructor for all falling objects =================== //
 class FallingObject {
-    constructor (name, image, width, height, rate, x){
+    constructor (image, width, height, speed, x){
         this.x = x;
         this.y = 0;
-        this.name = name;
         this.image = image;
         this.width = width;
         this.height = height;
-        this.rate = rate;
+        this.speed = speed;
         this.alive = true;
         this.render = function (){
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
+        this.move = function (){
+            this.y += this.speed;
+            if(this.y === 1000){
+                this.y = 0
+            }
+        }
     }
 };
-// // === Create random number generator to be called like which object to create, starting position on x axis == //
-function randomNum(num1, num2){
-    num1 = Math.ceil(num1)
-    num2 = Math.floor(num2)
-    return Math.floor(Math.random() * num1 - num2 + 1) + num1
-}
+// === Event Listener to get images on the gameboard ==========//
+window.addEventListener("DOMContentLoaded", function (e){
+    toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
+    toby.render();
+    // console.log(toby);
+    const randomXpos = Math.floor(Math.random() * (canvas.width) - 10);
+
+    hamburger = new FallingObject(hamburgerImage, 50, 50, 50, 3, randomXpos);
+    hamburger.render();
+    hamburger.move();
+
+    // yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
+    // yarn.render();
+
+    // chicken = new CharacterMaker(500, 0, 50, 50, 3, chickenImage);
+    // chicken.render();
+
+    // rubberband = new CharacterMaker(730, 0, 50, 50, 3, rubberbandImage);
+    // rubberband.render();
+
+    setInterval(gameloop, 120);
+})
+
 
 // //= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==// 
-    const fallingItems = []
+const fallingItems = []
+
+
+// // === Create random number generator to be called like which object to create, starting position on x axis == //
+
+function randomNum(num1, num2){
+        num1 = Math.ceil(num1)
+        num2 = Math.floor(num2)
+        return Math.floor(Math.random() * num1 - num2 + 1) + num1
+    }
+
+    for (f = 0; f < randomNum; f++){
+        fallingItems.push(new makeItem());
+    }
+
 
 // // == Function to create falling object items for player to collect or avoid. Want position to be randomly generated on x axis.
 // // parameters are name, image, width, height, rate, x
@@ -90,8 +126,6 @@ function randomNum(num1, num2){
      let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
      let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
      let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
-
-    // let randomImage = randomNum(1,4)
 }
 
 
@@ -102,27 +136,6 @@ function drawItem(){
         fallingItems[i].y += fallingItems[i].rate
     }
 };
-    // === Event Listener to get images on the gameboard ==========//
-    (function (){
-        toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
-        toby.render();
-        // console.log(toby);
-
-// ========= Don't want falling objects directly loaded onto screen on load =========//
-        // hamburger = new CharacterMaker(0, 0, 50, 50, 3, hamburgerImage);
-        // hamburger.render();
-
-        // yarn = new CharacterMaker(250, 0, 50, 50, 3, yarnImage);
-        // yarn.render();
-
-        // chicken = new CharacterMaker(500, 0, 50, 50, 3, chickenImage);
-        // chicken.render();
-
-        // rubberband = new CharacterMaker(730, 0, 50, 50, 3, rubberbandImage);
-        // rubberband.render();
-
-        setInterval(gameloop, 120);
-    })()
     
 // ========== KEYBOARD INTERACTION LOGIC ============= //
 function keyboardMovement(e){
