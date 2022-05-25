@@ -84,28 +84,6 @@ const fallingChicken = {
         this.y += this.foodSpeed;
     }
 };
-
-// ============= Class Constructor for all falling objects =================== //
-// class FallingObject {
-//         constructor (image, width, height, speed, x){
-//                 this.x = x;
-//                 this.y = 0;
-//                 this.image = image;
-//                 this.width = width;
-//                 this.height = height;
-//                 this.speed = speed;
-//                 this.alive = true;
-//                 this.render = function (){
-//                         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-//                     }
-//                     this.move = function (){
-//                             this.y += this.speed;
-//                             if(this.y === 1000){
-//                                     this.y = 0
-//                                 }
-//                             }
-//                         }
-//                     };
                     // === Event Listener to get images on the gameboard ==========//
                     window.addEventListener("DOMContentLoaded", function (e){
                         toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
@@ -137,7 +115,7 @@ const fallingChicken = {
                         // rubberband.render();
                         // rubberband.move();
 
-    setInterval(gameloop, 120);
+    setInterval(gameloop, 110);
 })
 
 
@@ -145,23 +123,12 @@ const fallingChicken = {
 
 // // === Create random number generator to be called like which object to create, starting position on x axis == //
 
-function randomNum(num1, num2){
-        num1 = Math.ceil(num1)
-        num2 = Math.floor(num2)
-        return Math.floor(Math.random() * num1 - num2 + 1) + num1
-    }
+// function randomNum(num1, num2){
+//         num1 = Math.ceil(num1)
+//         num2 = Math.floor(num2)
+//         return Math.floor(Math.random() * num1 - num2 + 1) + num1
+//     }
 
-    // for (f = 0; f < randomNum; f++){
-    //     fallingItems.push(new makeItem());
-    // }
-
-    // === Get items from array onto gameboard === //
-    // function drawItem(){
-    //     for (let i = 0; i < fallingItems.length; i++){
-    //         fallingItems[i].render()
-    //         fallingItems[i].y += fallingItems[i].speed
-    //     }
-    // };
     // // ==== Add new item onto the board randomly falling from top of page ========//
     // function addNewItem(){
     //     hamburger.alive = false;
@@ -222,21 +189,19 @@ function gameloop(){
     fallingChicken.render();
     fallingChicken.move();
     }
+// === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
+
 
     
     // //--- Detect Hit Logic ---//
-    // function detectHit(){
-    //     for (let i = 0; i < fallingItems.length; i++){
-    //         let toby = 
-    
-    
-    //     }
-    //     if (hitTest){
-    //         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
-    //         let newScore = gameScore + 100;
-    //         score.textContent = newScore;
-    //         return addNewItem();
-    //     } else {
-    //         return false;
-    //     }
-    // };
+    function detectHit(){
+
+
+        if (hitTest){
+            let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+            let newScore = gameScore + 100;
+            score.textContent = newScore;
+        } else {
+            return false;
+        }
+   };
