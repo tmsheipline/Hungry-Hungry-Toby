@@ -9,6 +9,7 @@ let toby;
 let yarn;
 let foodSpeed = 0;
 let startingPosition = true;
+let randomYposition = Math.floor(Math.random() * game.width) + 10;
 // //= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==//
 // const fallingItems = []
 
@@ -161,6 +162,28 @@ function keyboardMovement(e) {
 
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener("keydown", keyboardMovement);
+// === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
+function repopulate(){
+    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    let foodSpeed = Math.floor(Math.random() * 20) + 5;
+    if (fallingHamburger.y > canvas.height){
+        fallingHamburger.y = 0;
+        fallingHamburger.x = randomXposition;
+        fallingHamburger.foodSpeed = foodSpeed
+    } else if (fallingChicken.y > canvas.height) {
+        fallingChicken.y = 0;
+        fallingChicken.x = randomXposition;
+        fallingChicken.foodSpeed = foodSpeed;
+    } else if (fallingYarn.y > canvas.height){
+        fallingYarn.y = 0;
+        fallingYarn.x = randomXposition;
+        fallingYarn.foodSpeed = foodSpeed;
+    } else if (fallingRubberband.y > canvas.height){
+        fallingRubberband.y = 0;
+        fallingRubberband.x = randomXposition;
+        fallingRubberband.foodSpeed = foodSpeed;
+    }
+};
 
 // ======== Game Loop Logic ============//
 function gameloop() {
@@ -177,9 +200,9 @@ function gameloop() {
   fallingChicken.move();
   fallingYarn.render();
   fallingYarn.move();
-}
-// === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
 
+  repopulate();
+}
 
 
 
