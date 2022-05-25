@@ -3,15 +3,14 @@ let canvas = document.querySelector("#game");
 let ctx = canvas.getContext("2d");
 let score = document.querySelector("#score");
 let lives = document.querySelector("#lifecount");
-const randomXpos = Math.floor(Math.random() * canvas.width - 10);
+// const randomXpos = Math.floor(Math.random() * canvas.width - 10);
 // let hamburger;
 // let toby;
 // let yarn;
 let foodSpeed = 0;
 // let startingPosition = true;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
-let scoreElement = 0;
-// let startScore = 0;
+let startScore = 0;
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -179,18 +178,25 @@ function gameloop() {
   repopulate();
   detectHamburgerHit(toby, fallingHamburger);
   detectChickenHit(toby, fallingChicken);
+  detectYarnHit(toby, fallingYarn);
+  detectRubberbandHit(toby, fallingRubberband);
 }
 
-// //--- Detect Hit Logic ---//
+// //--- Detect Hit Logic Functions for each falling item ---//
 function detectHamburgerHit(toby, fallingHamburger) {
   let hamHitTest =
     toby.y + toby.height > fallingHamburger.y &&
     toby.y < fallingHamburger.y + fallingHamburger.height &&
     toby.x + toby.width > fallingHamburger.x &&
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
-
   if (hamHitTest) {
     console.log(`hamburger hit toby!`);
+    let gameScore = Number(score.textContent);
+    let newScore = gameScore + 100;
+    score.textContent = `${newScore}`;
+    return true;
+  } else {
+      return
   }
 };
 
@@ -203,6 +209,30 @@ function detectChickenHit(toby, fallingChicken){
 
   if (chickenHitTest) {
     console.log(`Chicken hit toby!`);
+  }
+};
+
+function detectYarnHit(toby, fallingYarn){
+    let yarnHitTest =
+    toby.y + toby.height > fallingYarn.y &&
+    toby.y < fallingYarn.y + fallingYarn.height &&
+    toby.x + toby.width > fallingYarn.x &&
+    toby.x < fallingYarn.x + fallingYarn.width; // {boolean} : if all are true -> hit
+
+  if (yarnHitTest) {
+    console.log(`Yarn hit toby!`);
+  }
+};
+
+function detectRubberbandHit(toby, fallingRubberband){
+    let rubberbandHitTest =
+    toby.y + toby.height > fallingRubberband.y &&
+    toby.y < fallingRubberband.y + fallingRubberband.height &&
+    toby.x + toby.width > fallingRubberband.x &&
+    toby.x < fallingRubberband.x + fallingRubberband.width; // {boolean} : if all are true -> hit
+
+  if (rubberbandHitTest) {
+    console.log(`Rubberband hit toby!`);
   }
 };
 //   let hitTest =
@@ -224,7 +254,7 @@ function detectChickenHit(toby, fallingChicken){
 //   if (hitTest) {
 //     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
 //     let newScore = gameScore + 100;
-//     score.textContent = `Score:${newScore}`;
+//     score.textContent = newscore;
 //   } else {
 //     return false;
 //   }
