@@ -7,7 +7,7 @@ const randomXpos = Math.floor(Math.random() * canvas.width - 10);
 let hamburger;
 let toby;
 let yarn;
-let foodSpeed = 10;
+let foodSpeed = 0;
 let startingPosition = true;
 // //= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==//
 // const fallingItems = []
@@ -45,7 +45,7 @@ const fallingHamburger = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: 10,
+  foodSpeed: Math.floor(Math.random() * 20) + 5,
   image: hamburgerImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -60,7 +60,7 @@ const fallingRubberband = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: 30,
+  foodSpeed: Math.floor(Math.random() * 20) + 4,
   image: rubberbandImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -75,7 +75,7 @@ const fallingChicken = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: 20,
+  foodSpeed: Math.floor(Math.random() * 20) + 3,
   image: chickenImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -90,7 +90,7 @@ const fallingYarn = {
     y: 0,
     width: 50,
     height: 50,
-    foodSpeed: 5,
+    foodSpeed: Math.floor(Math.random() * 20) + 2,
     image: yarnImage,
     render() {
       ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -168,7 +168,7 @@ function gameloop() {
   ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
 
   toby.render(toby.x, toby.y, toby.width, toby.height);
-  //Items to be drawn and move //
+  //Items to be drawn and fall randomly along X axis //
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -180,12 +180,21 @@ function gameloop() {
 }
 // === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
 
+
+
+
 // //--- Detect Hit Logic ---//
-function detectHit() {
-  if (hitTest) {
+function detectHit(toby, fallingHamburger) {
+    let hitTest =
+    toby.y + toby.height > fallingHamburger.y &&
+    toby.y < fallingHamburger.y + fallingHamburger.height &&
+    toby.x + toby.width > fallingHamburger.x &&
+    toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
+  
+    if (hitTest) {
     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
     let newScore = gameScore + 100;
-    score.textContent = newScore;
+    score.textContent = `Score:${newScore}`;
   } else {
     return false;
   }
