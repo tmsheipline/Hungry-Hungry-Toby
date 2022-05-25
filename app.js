@@ -87,19 +87,19 @@ const fallingChicken = {
 };
 // == Get yarnball on board - fall from random x axis point == //
 const fallingYarn = {
-    x: Math.floor(Math.random() * game.width) + 10,
-    y: 0,
-    width: 50,
-    height: 50,
-    foodSpeed: Math.floor(Math.random() * 20) + 2,
-    image: yarnImage,
-    render() {
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    },
-    move() {
-      this.y += this.foodSpeed;
-    },
-  };
+  x: Math.floor(Math.random() * game.width) + 10,
+  y: 0,
+  width: 50,
+  height: 50,
+  foodSpeed: Math.floor(Math.random() * 20) + 2,
+  image: yarnImage,
+  render() {
+    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+  },
+  move() {
+    this.y += this.foodSpeed;
+  },
+};
 
 // === Event Listener to get images on the gameboard ==========//
 window.addEventListener("DOMContentLoaded", function (e) {
@@ -107,37 +107,8 @@ window.addEventListener("DOMContentLoaded", function (e) {
   toby.render();
   // console.log(toby);
 
-
   setInterval(gameloop, 110);
 });
-
-// // === Create random number generator to be called like which object to create, starting position on x axis == //
-
-// function randomNum(num1, num2){
-//         num1 = Math.ceil(num1)
-//         num2 = Math.floor(num2)
-//         return Math.floor(Math.random() * num1 - num2 + 1) + num1
-//     }
-
-// // ==== Add new item onto the board randomly falling from top of page ========//
-// function addNewItem(){
-//     hamburger.alive = false;
-//     hamburger = new FallingObject(x, y, 50, 50, 3, hamburgerImage);
-//     setTimeout(function(){
-//         let x = Math.floor(Math.random() * game.width) + 10;
-//         let y = 0;
-//     }, 1000)
-//     return true;
-// }
-
-// == Function to create falling object items for player to collect or avoid. Want position to be randomly generated on x axis.
-// parameters are name, image, width, height, speed, x
-//  function makeItem(){
-//      let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
-//      let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
-//      let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
-//      let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
-// }
 
 // ========== KEYBOARD INTERACTION LOGIC ============= //
 function keyboardMovement(e) {
@@ -163,27 +134,27 @@ function keyboardMovement(e) {
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener("keydown", keyboardMovement);
 // === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
-function repopulate(){
-    let randomXposition = Math.floor(Math.random() * game.width) + 10;
-    let foodSpeed = Math.floor(Math.random() * 20) + 5;
-    if (fallingHamburger.y > canvas.height){
-        fallingHamburger.y = 0;
-        fallingHamburger.x = randomXposition;
-        fallingHamburger.foodSpeed = foodSpeed
-    } else if (fallingChicken.y > canvas.height) {
-        fallingChicken.y = 0;
-        fallingChicken.x = randomXposition;
-        fallingChicken.foodSpeed = foodSpeed;
-    } else if (fallingYarn.y > canvas.height){
-        fallingYarn.y = 0;
-        fallingYarn.x = randomXposition;
-        fallingYarn.foodSpeed = foodSpeed;
-    } else if (fallingRubberband.y > canvas.height){
-        fallingRubberband.y = 0;
-        fallingRubberband.x = randomXposition;
-        fallingRubberband.foodSpeed = foodSpeed;
-    }
-};
+function repopulate() {
+  let randomXposition = Math.floor(Math.random() * game.width) + 10;
+  let foodSpeed = Math.floor(Math.random() * 20) + 5;
+  if (fallingHamburger.y > canvas.height) {
+    fallingHamburger.y = 0;
+    fallingHamburger.x = randomXposition;
+    fallingHamburger.foodSpeed = foodSpeed;
+  } else if (fallingChicken.y > canvas.height) {
+    fallingChicken.y = 0;
+    fallingChicken.x = randomXposition;
+    fallingChicken.foodSpeed = foodSpeed;
+  } else if (fallingYarn.y > canvas.height) {
+    fallingYarn.y = 0;
+    fallingYarn.x = randomXposition;
+    fallingYarn.foodSpeed = foodSpeed;
+  } else if (fallingRubberband.y > canvas.height) {
+    fallingRubberband.y = 0;
+    fallingRubberband.x = randomXposition;
+    fallingRubberband.foodSpeed = foodSpeed;
+  }
+}
 
 // ======== Game Loop Logic ============//
 function gameloop() {
@@ -204,21 +175,30 @@ function gameloop() {
   repopulate();
 }
 
-
-
 // //--- Detect Hit Logic ---//
 function detectHit(toby, fallingHamburger) {
-    let hitTest =
+  let hitTest =
     toby.y + toby.height > fallingHamburger.y &&
     toby.y < fallingHamburger.y + fallingHamburger.height &&
     toby.x + toby.width > fallingHamburger.x &&
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
-  
-    if (hitTest) {
+
+  //   if (hitTest) {
+  //     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+  //     let newScore = gameScore + 100;
+  //     score.textContent = `Score:${newScore}`;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
+  if (hitTest) {
     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
     let newScore = gameScore + 100;
     score.textContent = `Score:${newScore}`;
-  } else {
-    return false;
+  } else if (hitTest) {
+    // let lives = document.querySelector("#lifecount");
+    let lifeCount = lives.textContent;
+    let livesLeft = lifeCount - 1;
   }
 }
