@@ -4,15 +4,14 @@ let ctx = canvas.getContext("2d");
 let score = document.querySelector("#score");
 let lives = document.querySelector("#lifecount");
 const randomXpos = Math.floor(Math.random() * canvas.width - 10);
-let hamburger;
-let toby;
-let yarn;
+// let hamburger;
+// let toby;
+// let yarn;
 let foodSpeed = 0;
-let startingPosition = true;
+// let startingPosition = true;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
-// //= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==//
-// const fallingItems = []
-
+let scoreElement = 0;
+// let startScore = 0;
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -107,13 +106,12 @@ window.addEventListener("DOMContentLoaded", function (e) {
   toby.render();
   // console.log(toby);
 
-  setInterval(gameloop, 110);
+  setInterval(gameloop, 120);
 });
 
 // ========== KEYBOARD INTERACTION LOGIC ============= //
 function keyboardMovement(e) {
-  console.log("the key that was presssed was" + e.key);
-
+  //   console.log("the key that was presssed was" + e.key);
   switch (e.key) {
     case "ArrowLeft":
       ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
@@ -133,6 +131,7 @@ function keyboardMovement(e) {
 
 //---- Event listener to get Toby to move base on keydown ----//
 document.addEventListener("keydown", keyboardMovement);
+
 // === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
 function repopulate() {
   let randomXposition = Math.floor(Math.random() * game.width) + 10;
@@ -158,11 +157,16 @@ function repopulate() {
 
 // ======== Game Loop Logic ============//
 function gameloop() {
+// ==== Clear trailing image objects ====== //
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Clear Toby trailing image ===============//
   ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
 
+// === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
-  //Items to be drawn and fall randomly along X axis //
+
+//Items to be drawn and fall randomly along X axis //
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -171,34 +175,57 @@ function gameloop() {
   fallingChicken.move();
   fallingYarn.render();
   fallingYarn.move();
-
+// === Call Functions to operate in gameloop ==== //
   repopulate();
+  detectHamburgerHit(toby, fallingHamburger);
+  detectChickenHit(toby, fallingChicken);
 }
 
 // //--- Detect Hit Logic ---//
-function detectHit(toby, fallingHamburger) {
-  let hitTest =
+function detectHamburgerHit(toby, fallingHamburger) {
+  let hamHitTest =
     toby.y + toby.height > fallingHamburger.y &&
     toby.y < fallingHamburger.y + fallingHamburger.height &&
     toby.x + toby.width > fallingHamburger.x &&
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
 
-  //   if (hitTest) {
-  //     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
-  //     let newScore = gameScore + 100;
-  //     score.textContent = `Score:${newScore}`;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
-  if (hitTest) {
-    let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
-    let newScore = gameScore + 100;
-    score.textContent = `Score:${newScore}`;
-  } else if (hitTest) {
-    // let lives = document.querySelector("#lifecount");
-    let lifeCount = lives.textContent;
-    let livesLeft = lifeCount - 1;
+  if (hamHitTest) {
+    console.log(`hamburger hit toby!`);
   }
-}
+};
+
+function detectChickenHit(toby, fallingChicken){
+    let chickenHitTest =
+    toby.y + toby.height > fallingChicken.y &&
+    toby.y < fallingChicken.y + fallingChicken.height &&
+    toby.x + toby.width > fallingChicken.x &&
+    toby.x < fallingChicken.x + fallingChicken.width; // {boolean} : if all are true -> hit
+
+  if (chickenHitTest) {
+    console.log(`Chicken hit toby!`);
+  }
+};
+//   let hitTest =
+//     toby.y + toby.height > fallingHamburger.y &&
+//     toby.y < fallingHamburger.y + fallingHamburger.height &&
+//     toby.x + toby.width > fallingHamburger.x &&
+//     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
+
+//     if (hitTest) {
+//         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+//         let newScore = gameScore + 100;
+//         score.textContent = `Score:${score}`;
+//     } else if (hitTest) {
+//         // let lives = document.querySelector("#lifecount");
+//         let lifeCount = lives.textContent;
+//         let livesLeft = lifeCount - 1;
+//     }
+
+//   if (hitTest) {
+//     let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+//     let newScore = gameScore + 100;
+//     score.textContent = `Score:${newScore}`;
+//   } else {
+//     return false;
+//   }
+// }
