@@ -7,6 +7,8 @@ let foodSpeed = 0;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
 let lifeCount= 0;
 let newScore = 0;
+let winMessage = document.querySelector('#winMessage');
+let loseMessage = document.querySelector('#loseMessage');
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -94,6 +96,7 @@ const fallingYarn = {
     this.y += this.foodSpeed;
   },
 };
+console.log(fallingYarn)
 
 // === Event Listener to get images on the gameboard ==========//
 window.addEventListener("DOMContentLoaded", function (e) {
@@ -182,7 +185,7 @@ function gameloop() {
 // //--- Detect Hit Logic Functions for each falling item ---//
 function detectHamburgerHit(toby, fallingHamburger) {
   let hamHitTest =
-    toby.y + (toby.height + 800) > fallingHamburger.y &&
+    toby.y + toby.height > fallingHamburger.y &&
     toby.y < fallingHamburger.y + fallingHamburger.height &&
     toby.x + toby.width > fallingHamburger.x &&
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
@@ -191,7 +194,7 @@ function detectHamburgerHit(toby, fallingHamburger) {
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 100;
     score.textContent = newScore;
-  } else if (newScore === 2000) {
+  } else if (score.textContent === 2000) {
     alert(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
   }
 }
@@ -208,7 +211,7 @@ function detectChickenHit(toby, fallingChicken) {
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 100;
     score.textContent = newScore; 
-  } else if (newScore === 2000) {
+  } else if (score.textContent === 2000) {
     alert(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
   }
   return false;
