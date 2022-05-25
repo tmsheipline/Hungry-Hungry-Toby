@@ -3,7 +3,7 @@ let canvas = document.getElementById('game');
 let ctx = canvas.getContext('2d')
 let score = document.querySelector('#score')
 let lives = document.querySelector('#lifecount')
-// let hamburger;
+let hamburger;
 let toby;
 let yarn;
 
@@ -49,6 +49,13 @@ const fallingHamburger = {
     }
 };
 
+// ==== Function to draw falling objects onto game board ====//
+// function fallObject {
+//     hamburgerImage.render(hamburgerImage, math.random(), 0, 50, 50);
+//     hamburgerImage.move(0, 20)
+// }
+
+// fallObject();
 
 // ============= Class Constructor for all falling objects =================== //
 class FallingObject {
@@ -67,25 +74,26 @@ class FallingObject {
     }
 };
 // // === Create random number generator to be called like which object to create, starting position on x axis == //
-// function randomNum(min, max){
-//     min = Math.ceil(min)
-//     max = Math.floor(max)
-//     return Math.floor(Math.random() * max - min + 1) + min
-// }
+function randomNum(num1, num2){
+    num1 = Math.ceil(num1)
+    num2 = Math.floor(num2)
+    return Math.floor(Math.random() * num1 - num2 + 1) + num1
+}
 
 // //= Make an empty array to store randomly created fallingobjects - makeItem() will add them, then need to remove when caught or fall off board ==// 
-//     const fallingItems = []
+    const fallingItems = []
 
 // // == Function to create falling object items for player to collect or avoid. Want position to be randomly generated on x axis.
 // // parameters are name, image, width, height, rate, x
-//  function makeItem(){
-//      let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
-//      let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
-//      let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
-//      let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
+ function makeItem(){
+     let hamburger = new FallingObject('hamburger', hamburgerImage, 50, 50, 20, randomNum(0, canvas.width));
+     let chicken = new FallingObject('chicken', chickenImage, 50, 50, 40, randomNum(0, canvas.width));
+     let rubberband = new FallingObject('rubberband', rubberbandImage, 50, 50, 30, randomNum(0, canvas.width));
+     let yarn = new FallingObject('yarn', yarnImage, 50, 50, 20, randomNum(0, canvas.width));
 
     // let randomImage = randomNum(1,4)
-// }
+}
+
 
 // === Get items from array onto gameboard === //
 function drawItem(){
@@ -94,10 +102,6 @@ function drawItem(){
         fallingItems[i].y += fallingItems[i].rate
     }
 };
-
-
-
-
     // === Event Listener to get images on the gameboard ==========//
     (function (){
         toby = new CharacterMaker(300, 280, 150, 250, 1000, tobyImage);
@@ -151,37 +155,30 @@ function gameloop(){
     toby.render(toby.x, toby.y, toby.width, toby.height);
     }
 
-// //--- Detect Hit Logic ---//
-// function detectHit(){
-//     for (let i = 0; i < fallingItems.length; i++){
-//         let toby = 
-
-
-//     }
-
-
-
-
-
-
-
-//     if (hitTest){
-//         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
-//         let newScore = gameScore + 100;
-//         score.textContent = newScore;
-//         return addNewItem();
-//     } else {
-//         return false;
-//     }
-// };
-
-// // // ==== Add new item onto the board randomly falling from top of page ========//
-// function addNewItem(){
-    //     hamburger.alive = false;
-//     hamburger = new FallingObject(x, y, 50, 50, 3, hamburgerImage);
-//     setTimeout(function(){
-//         let x = Math.floor(Math.random() * game.width) + 10;
-//         let y = 0;
-//     }, 1000)
-//     return true;
-// }
+    
+    // // ==== Add new item onto the board randomly falling from top of page ========//
+    function addNewItem(){
+        hamburger.alive = false;
+        hamburger = new FallingObject(x, y, 50, 50, 3, hamburgerImage);
+        setTimeout(function(){
+            let x = Math.floor(Math.random() * game.width) + 10;
+            let y = 0;
+        }, 1000)
+        return true;
+    }
+    // //--- Detect Hit Logic ---//
+    // function detectHit(){
+    //     for (let i = 0; i < fallingItems.length; i++){
+    //         let toby = 
+    
+    
+    //     }
+    //     if (hitTest){
+    //         let gameScore = Number(score.textContent); //comes in as a string - put number in front - makes it a number
+    //         let newScore = gameScore + 100;
+    //         score.textContent = newScore;
+    //         return addNewItem();
+    //     } else {
+    //         return false;
+    //     }
+    // };
