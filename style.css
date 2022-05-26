@@ -113,3 +113,14 @@ main{
 #game-button:hover{
     background-color: orangered;
 }
+
+#winMessage{
+    font-family: 'Bangers', cursive;
+    font-size: larger;
+    background-color: lightblue;
+}
+#loseMessage{
+    font-family: 'Bangers', cursive;
+    font-size: larger;
+    background-color: lightblue;
+}

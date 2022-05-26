@@ -181,15 +181,7 @@ function gameloop() {
   detectChickenHit(toby, fallingChicken);
   detectYarnHit(toby, fallingYarn);
   detectRubberbandHit(toby, fallingRubberband);
-  // loseGame();
 }
-
-//   if (fallingHamburger.alive) {
-//     fallingHamburger.render();
-//     fallingHamburger.move();
-//   } else {
-
-//   }
 
 //=== Function to make object disappear on collision ==== //
 // function toggleVis(id){
@@ -218,7 +210,7 @@ function detectHamburgerHit(toby, fallingHamburger) {
     score.textContent = newScore;
     // fallingHamburger = fallingHamburger.display.none
   } else if (score.textContent == 100) {
-    alert(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+    console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
   }
 }
 
@@ -235,7 +227,7 @@ function detectChickenHit(toby, fallingChicken) {
     let newScore = gameScore + 1;
     score.textContent = newScore;
   } else if (score.textContent == 100) {
-    alert(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+    console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
   }
   return false;
 }
@@ -253,7 +245,7 @@ function detectYarnHit(toby, fallingYarn) {
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
   } else if (lives.textContent < 0) {
-    alert(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
+    console.log(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
   }
   return false;
 }
@@ -271,7 +263,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
   } else if (lives.textContent < 0) {
-    alert(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
+    console.log(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
   }
   return false;
 };
