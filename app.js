@@ -214,7 +214,6 @@ function detectHamburgerHit(toby, fallingHamburger) {
     let randomXposition = Math.floor(Math.random() * game.width) + 10;
     fallingHamburger.x = randomXposition;
     fallingHamburger.y = 0;
-    repopulate();
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
@@ -285,7 +284,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
 
 
 function modal() {
-  if (score.textContent == 3) {
+  if (score.textContent == 10) {
     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
     winMessage.style.display = "block";
     gameContainer.style.display = "none";

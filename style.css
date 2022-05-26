@@ -137,36 +137,6 @@ main{
     background-color: orangered;
 }
 
-/* #start-modal {
-    /* display: none; */
-    /* margin: 0 auto;
-    position: fixed; 
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Bangers', cursive;
-    background-image: url('./img/Load\ Screen\ Kitchen\ for\ Tobybig.png'); 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    display: none; 
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    text-align: center; */ 
-/* } */
-#game-title{
-    font-size: 65px;
-    text-align: center;
-    margin: 0.1em;
-}
-
-.modal-words{
-    text-align: center;
-    font-size: larger;
-}
-
 .hidden{
     display: none;
 }
@@ -211,14 +181,3 @@ main{
 #gameover,#gamewon{
     margin-bottom: 0;
 }
-/* #game-button{
-    color: black;
-    font-family: 'Bangers', cursive;
-    font-size: larger;
-    border-radius: 0.5em;
-    width: 100px;
-    height: 50px;
-}
-#game-button:hover{
-    background-color: orangered;
-} */
