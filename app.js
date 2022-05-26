@@ -7,6 +7,7 @@ let foodSpeed = 0;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
 let lifeCount = 0;
 let newScore = 0;
+let startModal = document.querySelector("#startModal")
 let winMessage = document.querySelector("#winMessage");
 let loseMessage = document.querySelector("#loseMessage");
 let resetButton = document.querySelector("#game-button");
@@ -102,8 +103,9 @@ console.log(fallingYarn);
 
 // === Event Listener to get images on the gameboard ==========//
 window.addEventListener("DOMContentLoaded", function (e) {
-  toby = new CharacterMaker(340, 380, 80, 110, 1000, tobyImage);
+  toby = new CharacterMaker(340, 420, 80, 110, 1000, tobyImage);
   toby.render();
+  // startModal.style.display = 'block';
   // console.log(toby);
 
   setInterval(gameloop, 120);
@@ -166,7 +168,7 @@ function gameloop() {
   // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
 
-  //Items to be drawn and fall randomly along X axis //
+  // Items to be drawn and fall randomly along X axis //
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -183,15 +185,6 @@ function gameloop() {
   detectRubberbandHit(toby, fallingRubberband);
 }
 
-//=== Function to make object disappear on collision ==== //
-// function toggleVis(id){
-//     let hamburgerImage = document.getElementById("burgerpic")
-//     if(hamburgerImage.style.display == 'block'){
-//       hamburgerImage.style.display = 'none';
-//     } else {
-//       hamburgerImage.style.display = 'block';
-//     }
-// };
 
 // //--- Detect Hit Logic Functions for each falling item ---//
 function detectHamburgerHit(toby, fallingHamburger) {
@@ -283,13 +276,13 @@ function detectRubberbandHit(toby, fallingRubberband) {
 //     return gameloop();
 //   }
 // };
-function modal() {
-  if (score.textContent == 100) {
-    // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
-    winMessage.style.display = "block";
-  }
-}
-console.log(modal);
+// function modal() {
+//   if (score.textContent == 25) {
+//     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+//     winMessage.style.display = "block";
+//   }
+// }
+// console.log(modal);
 
 function restartGame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -300,4 +293,4 @@ function restartGame() {
   repopulate();
 }
 
-resetButton.addEventListener("click", restartGame);
+// resetButton.addEventListener("click", restartGame);

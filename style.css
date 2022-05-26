@@ -30,21 +30,31 @@ body{
     text-align: center;
 }
 
-h2{
+
+h2, #how-to{
     text-decoration: underline;
+}
+
+#premise{
+    text-decoration: none;
 }
 
 canvas{
     /* background-position: center; */
     /* background-size: cover; */
-    width: 100%;
-    height: 490px;
+    width: 780px;
+    height: 530px;
     /* background-color: green; */
 }
+/* #game{
+    width: 515;
+    height: 900;
+} */
+
 
 #game-container{
     max-width: 50em;
-    height: 620px;
+    height: 660px;
     background-image: url('./img/GamePlay\ Kitchen\ for\ Tobybig.png');
     background-position: center;
     background-size: cover;
@@ -54,10 +64,10 @@ canvas{
     display: grid;
     grid-gap: 1em;
     grid-template-rows: auto;
-    grid-template-columns: 10.25fr 4.5fr 3.25fr;
+    /* grid-template-columns: 10.25fr 4.5fr 3.25fr; */
     grid-template-areas: "top-left top top-right"
                          "game game game"
-                         "btm-left btm-left btm-right";
+                         "btm-left btm-left btm-left";
     border: 2px black solid;
     border-radius: 0.5em;
                          
@@ -102,6 +112,19 @@ main{
     grid-area: btm-right;
 }
 
+#ingame-button{
+    color: black;
+    font-family: 'Bangers', cursive;
+    font-size: larger;
+    border-radius: 0.5em;
+    width: 100px;
+    height: 50px;
+}
+
+#ingame-button:hover{
+        background-color: orangered;
+}
+
 #game-button{
     color: black;
     font-family: 'Bangers', cursive;
@@ -123,15 +146,29 @@ main{
     width: 100%;
     height: 100%;
     font-family: 'Bangers', cursive;
+    /* background-image: url('./img/Load\ Screen\ Kitchen\ for\ Tobybig.png'); */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    display: none;
     /* display: flex;
     justify-content: center;
     align-items: center; */
     /* text-align: center; */
 }
-.modal-words{
+#game-title{
+    font-size: 65px;
     text-align: center;
+    margin: 0.1em;
 }
 
+.modal-words{
+    text-align: center;
+    font-size: larger;
+}
+
+.hidden{
+    display: none;
+}
 
 
 
