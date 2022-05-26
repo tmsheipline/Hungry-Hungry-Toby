@@ -9,7 +9,7 @@ As a user I want to:
 * See a picture of Toby as the main character
 * Move Toby left and right with the left and right arrow keys
 * See my score in a box near the top of the page
-* See how many bad items Toby has eaten in a box on the top of the page (3 bad items = game over)
+* See how many lives Toby has left. 3 lives to start with.
 * See items falling toward Toby
 * Catch or avoid the falling items
 * Receive a win message once the score has reached 2000
