@@ -10,7 +10,8 @@ let newScore = 0;
 let startModal = document.querySelector("#start-Modal")
 let winMessage = document.querySelector("#winMessage");
 let loseMessage = document.querySelector("#loseMessage");
-let resetButton = document.querySelector("#game-button");
+let resetButton = document.querySelector(".play-again");
+let gameContainer = document.querySelector("#game-container");
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -181,6 +182,7 @@ function gameloop() {
   // === Call Functions to operate in gameloop ==== //
   makeItems();
   repopulate();
+  modal();
   detectHamburgerHit(toby, fallingHamburger);
   detectChickenHit(toby, fallingChicken);
   detectYarnHit(toby, fallingYarn);
@@ -280,18 +282,15 @@ function detectRubberbandHit(toby, fallingRubberband) {
   }
 }
 
-// function loseGame() {
-//   if (lives.textContent <= 0){
-//     // console.log(`Toby ate too many inedible objects. Rush him to the vet. GAME OVER`)
-//     alert(`Toby ate too many inedible objects. Rush him to the vet. GAME OVER`);
-//   } else {
-//     return gameloop();
-//   }
-// };
+
 function modal() {
-  if (score.textContent == 25) {
+  if (score.textContent == 3) {
     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
     winMessage.style.display = "block";
+    gameContainer.style.display = "none";
+  } else if (lives.textContent == 0){
+    loseMessage.style.display = 'block';
+    gameContainer.style.display = "none";
   }
 }
 // console.log(modal);
@@ -303,6 +302,9 @@ function restartGame() {
   // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
   repopulate();
+  makeItems();
+  winMessage.style.display = 'none';
+  loseMessage.styl.display = 'none';
 }
 
-// resetButton.addEventListener("click", restartGame);
+resetButton.addEventListener("click", restartGame());

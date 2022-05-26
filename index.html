@@ -35,11 +35,20 @@
         <h2 id="premise">Toby, a rambunctious sphynx cat, is on a mission to cure his hunger for human food. <br/> Help him stave off hunger by catching the human food items but make sure to avoid the inedible items.</h2>
       </section>
     </div>
-    <section id="winMessage" style="display: none;">CONGRATULATIONS. TOBY'S BELLY IS FULL. YOU WIN!!!</section>
-    <section id="loseMessage" style="display: none;">TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER.....</section>
+    <section id="winMessage" style="display: none;">
+      <button class="play-again">Play Again</button>
+      <p id="gamewon">CONGRATULATIONS. YOU WIN!!!<br/>TOBY'S BELLY IS FULL.</p>
+      <img src="./img/Win message toby.png" id="thanks-cat" alt="Thank you cartoon of sphynx">
+      <img src="./img/Big belly win message.png" id="belly-cat" alt="Full cat belly on cartoon sphynx">
+    </section>
+    <section id="loseMessage" style="display: none;">
+      <button class="play-again">Play Again</button>
+      <p id="gameover">GAME OVER.....<br/>TOBY ATE TOO MANY INEDIBLE OBJECTS.<br/> RUSH HIM TO THE VET.</p>
+    <img src="./img/Lose Message.png" id="lose-cat" alt="Alarmed cartoon sphynx face">
+    </section>
     <div id="game-container">
-        <aside id="top-left"><h2>Lives:</h2><br/><h2 id="lifecount">3</h2></aside>
-        <aside id="top-right"><h2>Score:</h2><br/><h2 id="score">0</h2></aside>
+      <aside id="top-left"><h2>Lives:</h2><br/><h2 id="lifecount">3</h2></aside>
+      <aside id="top-right"><h2>Score:</h2><br/><h2 id="score">0</h2></aside>
       <main>
         <canvas id="game"></canvas>
       </main>
