@@ -296,15 +296,18 @@ function modal() {
 // console.log(modal);
 
 function restartGame() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // Clear Toby trailing image ===============//
-  ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-  // === Draw Toby on the board each loop === //
-  toby.render(toby.x, toby.y, toby.width, toby.height);
-  repopulate();
-  makeItems();
-  winMessage.style.display = 'none';
-  loseMessage.styl.display = 'none';
+  window.location.reload();
+  // console.log("restart game clicked")
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // // Clear Toby trailing image ===============//
+  // ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
+  // // === Draw Toby on the board each loop === //
+  // toby.render(toby.x, toby.y, toby.width, toby.height);
+  // repopulate();
+  // makeItems();
+  // winMessage.style.display = 'none';
+  // loseMessage.style.display = 'none';
+  // gameContainer.style.display = 'grid';
 }
 
-resetButton.addEventListener("click", restartGame());
+resetButton.addEventListener("click", restartGame);
