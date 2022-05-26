@@ -11,6 +11,7 @@ let startModal = document.querySelector("#start-Modal")
 let winMessage = document.querySelector("#winMessage");
 let loseMessage = document.querySelector("#loseMessage");
 let resetButton = document.querySelector(".play-again");
+let resetButtonLose = document.querySelector('.play-againlose')
 let gameContainer = document.querySelector("#game-container");
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
@@ -311,3 +312,4 @@ function restartGame() {
 }
 
 resetButton.addEventListener("click", restartGame);
+resetButtonLose.addEventListener("click", restartGame);

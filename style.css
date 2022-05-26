@@ -137,25 +137,25 @@ main{
     background-color: orangered;
 }
 
-#start-modal {
-    display: none;
-    /* margin: 0 auto; */
-    /* position: fixed; */
-    /* z-index: 1; */
-    /* left: 0; */
-    /* top: 0; */
-    /* width: 100%; */
-    /* height: 100%; */
-    /* font-family: 'Bangers', cursive; */
-    /* background-image: url('./img/Load\ Screen\ Kitchen\ for\ Tobybig.png'); */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
+/* #start-modal {
     /* display: none; */
-    /* display: flex;
+    /* margin: 0 auto;
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Bangers', cursive;
+    background-image: url('./img/Load\ Screen\ Kitchen\ for\ Tobybig.png'); 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    display: none; 
+    display: flex;
     justify-content: center;
-    align-items: center; */
-    /* text-align: center; */
-}
+    align-items: center; 
+    text-align: center; */ 
+/* } */
 #game-title{
     font-size: 65px;
     text-align: center;
@@ -191,7 +191,7 @@ main{
     
     /* background-color: lightblue; */
 }
-.play-again{
+.play-again, .play-againlose{
     color: black;
     font-family: 'Bangers', cursive;
     font-size: 30px;
@@ -199,7 +199,7 @@ main{
     width: 150px;
     height: 75px;
 }
-.play-again:hover{
+.play-again:hover, .play-againlose:hover{
     background-color: orangered;
 }
 
