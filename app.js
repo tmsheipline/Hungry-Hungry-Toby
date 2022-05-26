@@ -7,12 +7,15 @@ let foodSpeed = 0;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
 let lifeCount = 0;
 let newScore = 0;
-let startModal = document.querySelector("#start-Modal")
+let startModal = document.querySelector("#start-modal");
 let winMessage = document.querySelector("#winMessage");
 let loseMessage = document.querySelector("#loseMessage");
 let resetButton = document.querySelector(".play-again");
-let resetButtonLose = document.querySelector('.play-againlose')
+let resetButtonLose = document.querySelector(".play-againlose");
 let gameContainer = document.querySelector("#game-container");
+let initGame = document.querySelector("#initgame");
+const myInterval = setInterval(gameloop, 120);
+
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
 canvas.setAttribute("height", getComputedStyle(canvas)["height"]);
@@ -46,7 +49,7 @@ const fallingHamburger = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 15,
+  foodSpeed: Math.floor(Math.random() * 20) + 21,
   image: hamburgerImage,
   alive: true,
   render() {
@@ -62,7 +65,7 @@ const fallingRubberband = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 7,
+  foodSpeed: Math.floor(Math.random() * 20) + 52,
   image: rubberbandImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -77,7 +80,7 @@ const fallingChicken = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 13,
+  foodSpeed: Math.floor(Math.random() * 20) + 43,
   image: chickenImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -92,7 +95,7 @@ const fallingYarn = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 19,
+  foodSpeed: Math.floor(Math.random() * 20) + 29,
   image: yarnImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -108,9 +111,9 @@ window.addEventListener("DOMContentLoaded", function (e) {
   toby = new CharacterMaker(340, 420, 80, 110, 1000, tobyImage);
   toby.render();
   // startModal.style.display = 'block';
-  // console.log(toby);
+  gameContainer.style.display = "none";
 
-  setInterval(gameloop, 120);
+  // console.log(toby);
 });
 
 // ========== KEYBOARD INTERACTION LOGIC ============= //
@@ -161,7 +164,6 @@ function repopulate() {
 
 // ======== Game Loop Logic ============//
 function gameloop() {
-
   // ==== Clear trailing image objects ====== //
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -183,15 +185,16 @@ function gameloop() {
   // === Call Functions to operate in gameloop ==== //
   makeItems();
   repopulate();
-  modal();
   detectHamburgerHit(toby, fallingHamburger);
   detectChickenHit(toby, fallingChicken);
   detectYarnHit(toby, fallingYarn);
   detectRubberbandHit(toby, fallingRubberband);
+  modal();
 }
+// setInterval(modal, 1000);
 
 // function to make items and start the falling action
-function makeItems(){
+function makeItems() {
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -270,7 +273,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
     toby.x < fallingRubberband.x + fallingRubberband.width; // {boolean} : if all are true -> hit
 
   if (rubberbandHitTest) {
-    console.log(`Rubberband hit toby!`);
+    console.log(`Rubberband hit Toby`);
     let randomXposition = Math.floor(Math.random() * game.width) + 10;
     fallingRubberband.x = randomXposition;
     fallingRubberband.y = 0;
@@ -282,20 +285,26 @@ function detectRubberbandHit(toby, fallingRubberband) {
   }
 }
 
-
 function modal() {
-  if (score.textContent == 10) {
+  if (score.textContent == 50) {
     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+    // stopGame();
+    console.log("game over");
+    stopGame();
     winMessage.style.display = "block";
     gameContainer.style.display = "none";
-  } else if (lives.textContent == 0){
-    loseMessage.style.display = 'block';
+  } else if (lives.textContent == 0) {
+    console.log("game over");
+    stopGame();
+    loseMessage.style.display = "block";
     gameContainer.style.display = "none";
   }
 }
 // console.log(modal);
 
 function restartGame() {
+  startModal.style.display = "none";
+  stopGame();
   window.location.reload();
   // console.log("restart game clicked")
   // ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -310,5 +319,25 @@ function restartGame() {
   // gameContainer.style.display = 'grid';
 }
 
+function startGame() {
+  // window.location.reload();
+  startModal.style.display = "none";
+  gameContainer.style.display = "grid";
+  // setInterval(gameloop, 120);
+  // const myInterval = setInterval(gameloop, 120);
+
+  // makeItems();
+  // repopulate();
+  // modal();
+  // gameloop();
+}
+
+function stopGame() {
+  clearInterval(myInterval);
+  // clearInterval(modal, 1000);
+  console.log("stop game called");
+}
+
 resetButton.addEventListener("click", restartGame);
 resetButtonLose.addEventListener("click", restartGame);
+initGame.addEventListener("click", startGame);
