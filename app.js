@@ -7,7 +7,7 @@ let foodSpeed = 0;
 let randomYposition = Math.floor(Math.random() * game.width) + 10;
 let lifeCount = 0;
 let newScore = 0;
-let startModal = document.querySelector("#startModal")
+let startModal = document.querySelector("#start-Modal")
 let winMessage = document.querySelector("#winMessage");
 let loseMessage = document.querySelector("#loseMessage");
 let resetButton = document.querySelector("#game-button");
@@ -44,7 +44,7 @@ const fallingHamburger = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 5,
+  foodSpeed: Math.floor(Math.random() * 20) + 15,
   image: hamburgerImage,
   alive: true,
   render() {
@@ -60,7 +60,7 @@ const fallingRubberband = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 4,
+  foodSpeed: Math.floor(Math.random() * 20) + 7,
   image: rubberbandImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -75,7 +75,7 @@ const fallingChicken = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 3,
+  foodSpeed: Math.floor(Math.random() * 20) + 13,
   image: chickenImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -90,7 +90,7 @@ const fallingYarn = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 2,
+  foodSpeed: Math.floor(Math.random() * 20) + 19,
   image: yarnImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -159,6 +159,7 @@ function repopulate() {
 
 // ======== Game Loop Logic ============//
 function gameloop() {
+
   // ==== Clear trailing image objects ====== //
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -168,7 +169,26 @@ function gameloop() {
   // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
 
-  // Items to be drawn and fall randomly along X axis //
+  // // Items to be drawn and fall randomly along X axis //
+  // fallingHamburger.render();
+  // fallingHamburger.move();
+  // fallingRubberband.render();
+  // fallingRubberband.move();
+  // fallingChicken.render();
+  // fallingChicken.move();
+  // fallingYarn.render();
+  // fallingYarn.move();
+  // === Call Functions to operate in gameloop ==== //
+  makeItems();
+  repopulate();
+  detectHamburgerHit(toby, fallingHamburger);
+  detectChickenHit(toby, fallingChicken);
+  detectYarnHit(toby, fallingYarn);
+  detectRubberbandHit(toby, fallingRubberband);
+}
+
+// function to make items and start the falling action
+function makeItems(){
   fallingHamburger.render();
   fallingHamburger.move();
   fallingRubberband.render();
@@ -177,14 +197,7 @@ function gameloop() {
   fallingChicken.move();
   fallingYarn.render();
   fallingYarn.move();
-  // === Call Functions to operate in gameloop ==== //
-  repopulate();
-  detectHamburgerHit(toby, fallingHamburger);
-  detectChickenHit(toby, fallingChicken);
-  detectYarnHit(toby, fallingYarn);
-  detectRubberbandHit(toby, fallingRubberband);
 }
-
 
 // //--- Detect Hit Logic Functions for each falling item ---//
 function detectHamburgerHit(toby, fallingHamburger) {
@@ -202,7 +215,6 @@ function detectHamburgerHit(toby, fallingHamburger) {
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
-    // fallingHamburger = fallingHamburger.display.none
   } else {
     return false;
   }
@@ -276,12 +288,12 @@ function detectRubberbandHit(toby, fallingRubberband) {
 //     return gameloop();
 //   }
 // };
-// function modal() {
-//   if (score.textContent == 25) {
-//     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
-//     winMessage.style.display = "block";
-//   }
-// }
+function modal() {
+  if (score.textContent == 25) {
+    // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+    winMessage.style.display = "block";
+  }
+}
 // console.log(modal);
 
 function restartGame() {
