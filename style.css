@@ -114,13 +114,70 @@ main{
     background-color: orangered;
 }
 
+#start-modal {
+    /* margin: 0 auto; */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Bangers', cursive;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* text-align: center; */
+}
+.modal-words{
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* .modal-win {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    background-size: 400px;
+    font-family: 'Bangers', cursive;
+    color: black;
+    font-size: 100px;
+
+    margin: 0 auto;
+}
+
+.modal-lose {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+    background-size: 400px;
+    font-family: 'Bangers', cursive;
+    color: black;
+    font-size: 100px;
+} */
+
+
 #winMessage{
     font-family: 'Bangers', cursive;
     font-size: larger;
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }
 #loseMessage{
     font-family: 'Bangers', cursive;
     font-size: larger;
-    background-color: lightblue;
+    /* background-color: lightblue; */
 }

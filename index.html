@@ -22,8 +22,24 @@
     <img src="./img/hamburger icon.png" id="burgerpic" style="display: none;" alt="Picture of burger icon">
     <img src="./img/rubberband icon.png" id="rubberbandpic" style="display: none;" alt="Picture of rubberband icon">
     <img src="./img/yarniconreal.png" id="yarnpic" style="display: none;" alt="Picture of yarn icon">
-    <section id="winMessage" style="display: none;">CONGRATULATIONS. TOBY'S BELLY IS FULL. YOU WIN!!!</section>
-    <section id="loseMessage" style="display: none;">TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER.....</section>
+    <!-- Start Screen -->
+    <div id="startModal" class="start-modal">
+      <section class="modal-words">
+      <h1 id="game-title">Hungry Hungry Toby</h1>
+      <h2>Toby, a rambunctious sphynx cat, is on a mission to cure his hunger for human food. Help him stave off hunger by catching the human food items but make sure to avoid the inedible items.</h2>
+      <h3>How to play:</h3>
+      <h3>Help Toby catch all the food items but make sure you avoid the inedible items. Toby will no longer be hungry when he reaches a score of 200. Toby loses if he eats 3 inedible food items.</h3>
+      <button id="game-button">Play Game</button>
+      </section>
+    </div>
+
+
+    <div class="modal-win" style="display: none ;">
+    <p id="winMessage">CONGRATULATIONS. TOBY'S BELLY IS FULL. YOU WIN!!!</p>
+    </div>
+    <div class="modal-lose" style="display: none;">
+    <p id="loseMessage">TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER.....</p>
+    </div>
     <!-- end of images -->
     <section class="title">
         <img src="./img/eating cartoon sphynx (1).png" id="title-toby-one" alt="Cartoon Sphnyx eating a ham">
@@ -37,7 +53,7 @@
         <canvas id="game"></canvas>
       </main>
       <aside id="bottom-left"><h2 id="gamestatus"> Use ◀︎ and ► keys to move Toby <br> Help Toby catch the food items while avoiding the inedible items</h2></aside>
-      <aside id="bottom-right"><button id="game-button">Play Game</button></aside>
+      <aside id="bottom-right"><!--<button id="game-button">Play Game</button>--></aside>
     </div>
     <script src="./app.js"></script>
   </body>

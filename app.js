@@ -202,15 +202,16 @@ function detectHamburgerHit(toby, fallingHamburger) {
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
   if (hamHitTest) {
     console.log(`hamburger hit toby!`);
-    // fallingHamburger.alive = false;
-    // repopulate();
-    // toggleVis("burgerpic")
+    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    fallingHamburger.x = randomXposition;
+    fallingHamburger.y = 0;
+    repopulate();
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
     // fallingHamburger = fallingHamburger.display.none
-  } else if (score.textContent == 100) {
-    console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+  } else {
+    return false;
   }
 }
 
@@ -223,13 +224,15 @@ function detectChickenHit(toby, fallingChicken) {
 
   if (chickenHitTest) {
     console.log(`Chicken hit toby!`);
+    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    fallingChicken.x = randomXposition;
+    fallingChicken.y = 0;
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
-  } else if (score.textContent == 100) {
-    console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+  } else {
+    return false;
   }
-  return false;
 }
 
 function detectYarnHit(toby, fallingYarn) {
@@ -241,13 +244,15 @@ function detectYarnHit(toby, fallingYarn) {
 
   if (yarnHitTest) {
     console.log(`Yarn hit toby!`);
+    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    fallingYarn.x = randomXposition;
+    fallingYarn.y = 0;
     let live = Number(lives.textContent);
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
-  } else if (lives.textContent < 0) {
-    console.log(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
+  } else {
+    return false;
   }
-  return false;
 }
 
 function detectRubberbandHit(toby, fallingRubberband) {
@@ -259,14 +264,16 @@ function detectRubberbandHit(toby, fallingRubberband) {
 
   if (rubberbandHitTest) {
     console.log(`Rubberband hit toby!`);
+    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    fallingRubberband.x = randomXposition;
+    fallingRubberband.y = 0;
     let live = Number(lives.textContent);
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
-  } else if (lives.textContent < 0) {
-    console.log(`TOBY ATE TOO MANY INEDIBLE OBJECTS. RUSH HIM TO THE VET. GAME OVER`)
+  } else {
+    return false;
   }
-  return false;
-};
+}
 
 // function loseGame() {
 //   if (lives.textContent <= 0){
@@ -276,15 +283,21 @@ function detectRubberbandHit(toby, fallingRubberband) {
 //     return gameloop();
 //   }
 // };
+function modal() {
+  if (score.textContent == 100) {
+    // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+    winMessage.style.display = "block";
+  }
+}
+console.log(modal);
 
-function restartGame(){
+function restartGame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // Clear Toby trailing image ===============//
   ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
   // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
   repopulate();
-};
+}
 
-resetButton.addEventListener('click', restartGame);
-
+resetButton.addEventListener("click", restartGame);
