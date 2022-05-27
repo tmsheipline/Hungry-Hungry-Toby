@@ -141,7 +141,7 @@ main{
 }
 
 #ingame-button:hover{
-        background-color: orangered;
+        background-color: #f9cd79;
 }
 
 #game-button{
@@ -153,7 +153,7 @@ main{
     height: 50px;
 }
 #game-button:hover{
-    background-color: orangered;
+    background-color: #f9cd79;
 }
 
 /* .hidden{
@@ -189,7 +189,7 @@ main{
     height: 75px;
 }
 .play-again:hover, .play-againlose:hover{
-    background-color: orangered;
+    background-color: #f9cd79;
 }
 
 #lose-cat,#belly-cat,#thanks-cat{

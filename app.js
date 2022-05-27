@@ -17,6 +17,8 @@ let initGame = document.querySelector("#initgame");
 const myInterval = setInterval(gameloop, 1200);
 let tobyAudio = new Audio('./img/tobymeow.mp3');
 let winAudio = new Audio('./img/winaudio.mp3');
+let loseAudio = new Audio('./img/losesound.mp3');
+let munchAudio = new Audio('./img/munch.mp3');
 
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
@@ -217,7 +219,8 @@ function detectHamburgerHit(toby, fallingHamburger) {
     toby.x + toby.width > fallingHamburger.x &&
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
   if (hamHitTest) {
-    console.log(`hamburger hit toby!`);
+    // console.log(`hamburger hit toby!`);
+    munchAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingHamburger.x = randomXposition;
     fallingHamburger.y = 0;
@@ -238,7 +241,8 @@ function detectChickenHit(toby, fallingChicken) {
     toby.x < fallingChicken.x + fallingChicken.width; // {boolean} : if all are true -> hit
 
   if (chickenHitTest) {
-    console.log(`Chicken hit toby!`);
+    // console.log(`Chicken hit toby!`);
+    munchAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingChicken.x = randomXposition;
     fallingChicken.y = 0;
@@ -259,7 +263,7 @@ function detectYarnHit(toby, fallingYarn) {
     toby.x < fallingYarn.x + fallingYarn.width; // {boolean} : if all are true -> hit
 
   if (yarnHitTest) {
-    console.log(`Yarn hit toby!`);
+    // console.log(`Yarn hit toby!`);
     tobyAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingYarn.x = randomXposition;
@@ -281,7 +285,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
     toby.x < fallingRubberband.x + fallingRubberband.width; // {boolean} : if all are true -> hit
 
   if (rubberbandHitTest) {
-    console.log(`Rubberband hit Toby`);
+    // console.log(`Rubberband hit Toby`);
     tobyAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingRubberband.x = randomXposition;
@@ -349,12 +353,13 @@ function loseGame(){
     stopGame();
   gameContainer.style.display = "none"
   loseMessage.style.display = "block"
+  loseAudio.play();
 } else {
   return false
 }
 }
 function winGame(){
-  if (score.textContent == 3){
+  if (score.textContent == 30){
     stopGame();
   gameContainer.style.display = "none";
   winMessage.style.display = "block"
