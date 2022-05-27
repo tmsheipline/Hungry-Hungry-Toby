@@ -45,7 +45,8 @@ h2 {
 }
 
 #initgame:hover{
-    background-color: orangered;
+    /* background-color: orangered;  */
+    background-color: #f9cd79;
 }
 
 #how-to{
@@ -66,16 +67,10 @@ h2 {
 }
 
 canvas{
-    /* background-position: center; */
-    /* background-size: cover; */
     width: 780px;
     height: 530px;
-    /* background-color: green; */
 }
-/* #game{
-    width: 515;
-    height: 900;
-} */
+
 
 
 #game-container{
@@ -103,8 +98,6 @@ canvas{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: lightgrey; */
-    /* border: 1px black dashed ; */
 }
 
 #top-left{
@@ -163,9 +156,9 @@ main{
     background-color: orangered;
 }
 
-.hidden{
+/* .hidden{
     display: none;
-}
+} */
 
 #winMessage{
     font-family: 'Bangers', cursive;

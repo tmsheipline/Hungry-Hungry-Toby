@@ -49,7 +49,7 @@ const fallingHamburger = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 21,
+  foodSpeed: Math.floor(Math.random() * 20) + 11,
   image: hamburgerImage,
   alive: true,
   render() {
@@ -80,7 +80,7 @@ const fallingChicken = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 43,
+  foodSpeed: Math.floor(Math.random() * 20) + 23,
   image: chickenImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -95,7 +95,7 @@ const fallingYarn = {
   y: 0,
   width: 50,
   height: 50,
-  foodSpeed: Math.floor(Math.random() * 20) + 29,
+  foodSpeed: Math.floor(Math.random() * 20) + 19,
   image: yarnImage,
   render() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
@@ -143,7 +143,7 @@ document.addEventListener("keydown", keyboardMovement);
 // === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
 function repopulate() {
   let randomXposition = Math.floor(Math.random() * game.width) - 10;
-  let foodSpeed = Math.floor(Math.random() * 20) + 5;
+  let foodSpeed = Math.floor(Math.random() * 20) + 1;
   if (fallingHamburger.y > canvas.height) {
     fallingHamburger.y = 0;
     fallingHamburger.x = randomXposition;
@@ -216,7 +216,7 @@ function detectHamburgerHit(toby, fallingHamburger) {
     toby.x < fallingHamburger.x + fallingHamburger.width; // {boolean} : if all are true -> hit
   if (hamHitTest) {
     console.log(`hamburger hit toby!`);
-    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingHamburger.x = randomXposition;
     fallingHamburger.y = 0;
     let gameScore = Number(score.textContent);
@@ -237,7 +237,7 @@ function detectChickenHit(toby, fallingChicken) {
 
   if (chickenHitTest) {
     console.log(`Chicken hit toby!`);
-    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingChicken.x = randomXposition;
     fallingChicken.y = 0;
     let gameScore = Number(score.textContent);
@@ -258,7 +258,7 @@ function detectYarnHit(toby, fallingYarn) {
 
   if (yarnHitTest) {
     console.log(`Yarn hit toby!`);
-    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingYarn.x = randomXposition;
     fallingYarn.y = 0;
     let live = Number(lives.textContent);
@@ -279,7 +279,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
 
   if (rubberbandHitTest) {
     console.log(`Rubberband hit Toby`);
-    let randomXposition = Math.floor(Math.random() * game.width) + 10;
+    let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingRubberband.x = randomXposition;
     fallingRubberband.y = 0;
     let live = Number(lives.textContent);
