@@ -9,11 +9,11 @@ As a user I want to:
 * See a picture of Toby as the main character
 * Move Toby left and right with the left and right arrow keys
 * See my score in a box near the top of the page
-* See how many lives Toby has left. 3 lives to start with.
+* See how many lives Toby has left. 9 lives to start with.
 * See items falling toward Toby
 * Catch or avoid the falling items
-* Receive a win message once the score has reached 2000
-* Receive a loss message if 3 bad items have been eaten
+* Receive a win message once the score has reached 25
+* Receive a loss message if 9 bad items have been eaten
 * See Win/Loss screen with a play again button with game reset when clicked
 
 ## Technologies Used ##

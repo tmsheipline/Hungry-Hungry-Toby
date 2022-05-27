@@ -19,7 +19,7 @@ body{
 
 #title-text{
     /* font-family: 'Bangers', cursive; */
-    font-size: 65px;
+    font-size: 50px;
     text-align: center;
     margin: 0.1em;
 }
@@ -51,7 +51,7 @@ h2 {
 
 #how-to{
     text-decoration: underline;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #start-modal{
@@ -63,7 +63,7 @@ h2 {
 
 #premise{
     text-decoration: none;
-    font-size: 40px;
+    font-size: 30px;
 }
 
 canvas{
