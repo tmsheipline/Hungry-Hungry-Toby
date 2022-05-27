@@ -1,4 +1,4 @@
-// ======================Global Variables / DOM manipulation ====================//
+// ====================== Global Variables / DOM manipulation ====================//
 let canvas = document.querySelector("#game");
 let ctx = canvas.getContext("2d");
 let score = document.querySelector("#score");
@@ -14,7 +14,7 @@ let resetButton = document.querySelector(".play-again");
 let resetButtonLose = document.querySelector(".play-againlose");
 let gameContainer = document.querySelector("#game-container");
 let initGame = document.querySelector("#initgame");
-const myInterval = setInterval(gameloop, 120);
+const myInterval = setInterval(gameloop, 1200);
 
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
@@ -110,6 +110,7 @@ console.log(fallingYarn);
 window.addEventListener("DOMContentLoaded", function (e) {
   toby = new CharacterMaker(340, 420, 80, 110, 1000, tobyImage);
   toby.render();
+  stopGame();
   // startModal.style.display = 'block';
   gameContainer.style.display = "none";
 
@@ -141,7 +142,7 @@ document.addEventListener("keydown", keyboardMovement);
 
 // === Get Items to regenerate and keep falling after hit or after hitting bottom of the gameboard ==//
 function repopulate() {
-  let randomXposition = Math.floor(Math.random() * game.width) + 10;
+  let randomXposition = Math.floor(Math.random() * game.width) - 10;
   let foodSpeed = Math.floor(Math.random() * 20) + 5;
   if (fallingHamburger.y > canvas.height) {
     fallingHamburger.y = 0;
@@ -189,7 +190,8 @@ function gameloop() {
   detectChickenHit(toby, fallingChicken);
   detectYarnHit(toby, fallingYarn);
   detectRubberbandHit(toby, fallingRubberband);
-  modal();
+  // gameStatus();
+  // modal();
 }
 // setInterval(modal, 1000);
 
@@ -220,6 +222,7 @@ function detectHamburgerHit(toby, fallingHamburger) {
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
+    winGame();
   } else {
     return false;
   }
@@ -240,6 +243,7 @@ function detectChickenHit(toby, fallingChicken) {
     let gameScore = Number(score.textContent);
     let newScore = gameScore + 1;
     score.textContent = newScore;
+    winGame();
   } else {
     return false;
   }
@@ -260,6 +264,7 @@ function detectYarnHit(toby, fallingYarn) {
     let live = Number(lives.textContent);
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
+    loseGame();
   } else {
     return false;
   }
@@ -280,50 +285,47 @@ function detectRubberbandHit(toby, fallingRubberband) {
     let live = Number(lives.textContent);
     let lifeCount = live - 1;
     lives.textContent = lifeCount;
+    loseGame();
   } else {
     return false;
   }
 }
 
-function modal() {
-  if (score.textContent == 50) {
-    // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
-    // stopGame();
-    console.log("game over");
-    stopGame();
-    winMessage.style.display = "block";
-    gameContainer.style.display = "none";
-  } else if (lives.textContent == 0) {
-    console.log("game over");
-    stopGame();
-    loseMessage.style.display = "block";
-    gameContainer.style.display = "none";
-  }
+function gameStatus() {
+  loseGame();
+  winGame();
 }
+
+// function modal() {
+//   if (score.textContent == 50) {
+//     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
+//     // stopGame();
+//     console.log("game over");
+//     winMessage.style.display = "block";
+//     gameContainer.style.display = "none";
+//     stopGame();
+//   } else if (lives.textContent == 0) {
+//     console.log("game over");
+//     loseMessage.style.display = "block";
+//     gameContainer.style.display = "none";
+//     stopGame();
+//   }
+// };
 // console.log(modal);
 
 function restartGame() {
   startModal.style.display = "none";
-  stopGame();
+  gameContainer.style.dispaly = "grid";
+  // stopGame();
   window.location.reload();
-  // console.log("restart game clicked")
-  // ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // // Clear Toby trailing image ===============//
-  // ctx.clearRect(toby.x, toby.y, toby.width, toby.height);
-  // // === Draw Toby on the board each loop === //
-  // toby.render(toby.x, toby.y, toby.width, toby.height);
-  // repopulate();
-  // makeItems();
-  // winMessage.style.display = 'none';
-  // loseMessage.style.display = 'none';
-  // gameContainer.style.display = 'grid';
+
 }
 
 function startGame() {
   // window.location.reload();
   startModal.style.display = "none";
   gameContainer.style.display = "grid";
-  // setInterval(gameloop, 120);
+  setInterval(gameloop, 120);
   // const myInterval = setInterval(gameloop, 120);
 
   // makeItems();
@@ -338,6 +340,24 @@ function stopGame() {
   console.log("stop game called");
 }
 
+function loseGame(){
+  if (lives.textContent == 0){
+    stopGame();
+  gameContainer.style.display = "none"
+  loseMessage.style.display = "block"
+} else {
+  return false
+}
+}
+function winGame(){
+  if (score.textContent == 3){
+    stopGame();
+  gameContainer.style.display = "none";
+  winMessage.style.display = "block"
+} else {
+  return false;
+}
+}
 resetButton.addEventListener("click", restartGame);
 resetButtonLose.addEventListener("click", restartGame);
 initGame.addEventListener("click", startGame);
