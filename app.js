@@ -115,7 +115,6 @@ window.addEventListener("DOMContentLoaded", function (e) {
   toby = new CharacterMaker(340, 420, 80, 110, 1000, tobyImage);
   toby.render();
   stopGame();
-  // startModal.style.display = 'block';
   gameContainer.style.display = "none";
 
   // console.log(toby);
@@ -177,16 +176,7 @@ function gameloop() {
 
   // === Draw Toby on the board each loop === //
   toby.render(toby.x, toby.y, toby.width, toby.height);
-
-  // // Items to be drawn and fall randomly along X axis //
-  // fallingHamburger.render();
-  // fallingHamburger.move();
-  // fallingRubberband.render();
-  // fallingRubberband.move();
-  // fallingChicken.render();
-  // fallingChicken.move();
-  // fallingYarn.render();
-  // fallingYarn.move();
+ 
   // === Call Functions to operate in gameloop ==== //
   makeItems();
   repopulate();
@@ -194,10 +184,7 @@ function gameloop() {
   detectChickenHit(toby, fallingChicken);
   detectYarnHit(toby, fallingYarn);
   detectRubberbandHit(toby, fallingRubberband);
-  // gameStatus();
-  // modal();
 }
-// setInterval(modal, 1000);
 
 // function to make items and start the falling action
 function makeItems() {
@@ -304,23 +291,6 @@ function gameStatus() {
   winGame();
 }
 
-// function modal() {
-//   if (score.textContent == 50) {
-//     // console.log(`CONGRATS. TOBY'S BELLY IS FULL. YOU WIN`)
-//     // stopGame();
-//     console.log("game over");
-//     winMessage.style.display = "block";
-//     gameContainer.style.display = "none";
-//     stopGame();
-//   } else if (lives.textContent == 0) {
-//     console.log("game over");
-//     loseMessage.style.display = "block";
-//     gameContainer.style.display = "none";
-//     stopGame();
-//   }
-// };
-// console.log(modal);
-
 function restartGame() {
   startModal.style.display = "none";
   gameContainer.style.dispaly = "grid";
@@ -334,12 +304,6 @@ function startGame() {
   startModal.style.display = "none";
   gameContainer.style.display = "grid";
   setInterval(gameloop, 120);
-  // const myInterval = setInterval(gameloop, 120);
-
-  // makeItems();
-  // repopulate();
-  // modal();
-  // gameloop();
 }
 
 function stopGame() {
