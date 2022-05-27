@@ -15,6 +15,8 @@ let resetButtonLose = document.querySelector(".play-againlose");
 let gameContainer = document.querySelector("#game-container");
 let initGame = document.querySelector("#initgame");
 const myInterval = setInterval(gameloop, 1200);
+let tobyAudio = new Audio('./img/tobymeow.mp3');
+let winAudio = new Audio('./img/winaudio.mp3');
 
 // ====================== Setting Canvas and Context =========================== //
 canvas.setAttribute("width", getComputedStyle(canvas)["width"]);
@@ -258,6 +260,7 @@ function detectYarnHit(toby, fallingYarn) {
 
   if (yarnHitTest) {
     console.log(`Yarn hit toby!`);
+    tobyAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingYarn.x = randomXposition;
     fallingYarn.y = 0;
@@ -279,6 +282,7 @@ function detectRubberbandHit(toby, fallingRubberband) {
 
   if (rubberbandHitTest) {
     console.log(`Rubberband hit Toby`);
+    tobyAudio.play();
     let randomXposition = Math.floor(Math.random() * game.width) - 10;
     fallingRubberband.x = randomXposition;
     fallingRubberband.y = 0;
@@ -354,6 +358,8 @@ function winGame(){
     stopGame();
   gameContainer.style.display = "none";
   winMessage.style.display = "block"
+  winAudio.play();
+
 } else {
   return false;
 }
