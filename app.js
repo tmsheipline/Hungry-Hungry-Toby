@@ -323,7 +323,7 @@ function loseGame(){
 }
 }
 function winGame(){
-  if (score.textContent == 30){
+  if (score.textContent == 5){
     stopGame();
   gameContainer.style.display = "none";
   winMessage.style.display = "block"
